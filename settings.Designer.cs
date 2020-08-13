@@ -34,7 +34,7 @@
             this.txtDatabaseUsername = new System.Windows.Forms.TextBox();
             this.txtDatabasePassword = new System.Windows.Forms.TextBox();
             this.txtRefresh = new System.Windows.Forms.TextBox();
-            this.txtDarkSkyAPI = new System.Windows.Forms.TextBox();
+            this.txtWeatherAPI = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -101,12 +101,12 @@
             this.txtRefresh.Size = new System.Drawing.Size(131, 20);
             this.txtRefresh.TabIndex = 4;
             // 
-            // txtDarkSkyAPI
+            // txtWeatherAPI
             // 
-            this.txtDarkSkyAPI.Location = new System.Drawing.Point(19, 46);
-            this.txtDarkSkyAPI.Name = "txtDarkSkyAPI";
-            this.txtDarkSkyAPI.Size = new System.Drawing.Size(277, 20);
-            this.txtDarkSkyAPI.TabIndex = 5;
+            this.txtWeatherAPI.Location = new System.Drawing.Point(19, 46);
+            this.txtWeatherAPI.Name = "txtWeatherAPI";
+            this.txtWeatherAPI.Size = new System.Drawing.Size(277, 20);
+            this.txtWeatherAPI.TabIndex = 5;
             // 
             // label1
             // 
@@ -191,7 +191,7 @@
             this.groupBox1.Controls.Add(this.txtLat);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtLong);
-            this.groupBox1.Controls.Add(this.txtDarkSkyAPI);
+            this.groupBox1.Controls.Add(this.txtWeatherAPI);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(14, 170);
             this.groupBox1.Name = "groupBox1";
@@ -387,7 +387,7 @@
         private System.Windows.Forms.TextBox txtDatabaseUsername;
         private System.Windows.Forms.TextBox txtDatabasePassword;
         private System.Windows.Forms.TextBox txtRefresh;
-        private System.Windows.Forms.TextBox txtDarkSkyAPI;
+        private System.Windows.Forms.TextBox txtWeatherAPI;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

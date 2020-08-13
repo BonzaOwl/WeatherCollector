@@ -20,7 +20,7 @@ namespace WeatherCollectorDesktop
             txtServerName.Text = Properties.Settings.Default.ServerName;
             txtDatabaseName.Text = Properties.Settings.Default.DataBaseName;
             txtRefresh.Text = Properties.Settings.Default.RefreshInterval.ToString();
-            txtDarkSkyAPI.Text = Properties.Settings.Default.weatherAPIKey;            
+            txtWeatherAPI.Text = Properties.Settings.Default.weatherAPIKey;            
             lblLang.Text = Properties.Settings.Default.weatherUnits;
             txtLat.Text = Properties.Settings.Default.weatherLat;
             txtLong.Text = Properties.Settings.Default.weatherLong;
@@ -37,7 +37,7 @@ namespace WeatherCollectorDesktop
             Properties.Settings.Default.ServerName = txtServerName.Text;
             Properties.Settings.Default.DataBaseName = txtDatabaseName.Text;
             Properties.Settings.Default.RefreshInterval = Convert.ToInt32(txtRefresh.Text);
-            Properties.Settings.Default.weatherAPIKey = txtDarkSkyAPI.Text;
+            Properties.Settings.Default.weatherAPIKey = txtWeatherAPI.Text;
             Properties.Settings.Default.weatherLat = txtLat.Text;
             Properties.Settings.Default.weatherLong = txtLong.Text;
             Properties.Settings.Default.DatabaseUser = txtDatabaseUsername.Text;

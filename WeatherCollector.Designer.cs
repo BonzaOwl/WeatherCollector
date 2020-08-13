@@ -210,7 +210,7 @@
             this.lblDatabaseExist.Text = "DATABASE DOESN\'T EXIST";
             this.lblDatabaseExist.Visible = false;
             // 
-            // DarkSkyCollector
+            // WeatherCollector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
