@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DarkSkyCollectorDesktop.Properties {
+namespace WeatherCollectorDesktop.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -86,72 +86,72 @@ namespace DarkSkyCollectorDesktop.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DarkSkyAPIKey {
+        public string weatherAPIKey {
             get {
-                return ((string)(this["DarkSkyAPIKey"]));
+                return ((string)(this["weatherAPIKey"]));
             }
             set {
-                this["DarkSkyAPIKey"] = value;
+                this["weatherAPIKey"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DarkSkyExclusions {
+        public string weatherExclusions {
             get {
-                return ((string)(this["DarkSkyExclusions"]));
+                return ((string)(this["weatherExclusions"]));
             }
             set {
-                this["DarkSkyExclusions"] = value;
+                this["weatherExclusions"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DarkSkyLang {
+        public string weatherLang {
             get {
-                return ((string)(this["DarkSkyLang"]));
+                return ((string)(this["weatherLang"]));
             }
             set {
-                this["DarkSkyLang"] = value;
+                this["weatherLang"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DarkSkyLat {
+        public string weatherLat {
             get {
-                return ((string)(this["DarkSkyLat"]));
+                return ((string)(this["weatherLat"]));
             }
             set {
-                this["DarkSkyLat"] = value;
+                this["weatherLat"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DarkSkyLong {
+        public string weatherLong {
             get {
-                return ((string)(this["DarkSkyLong"]));
+                return ((string)(this["weatherLong"]));
             }
             set {
-                this["DarkSkyLong"] = value;
+                this["weatherLong"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DarkSkyUnits {
+        public string weatherUnits {
             get {
-                return ((string)(this["DarkSkyUnits"]));
+                return ((string)(this["weatherUnits"]));
             }
             set {
-                this["DarkSkyUnits"] = value;
+                this["weatherUnits"] = value;
             }
         }
         
@@ -188,6 +188,30 @@ namespace DarkSkyCollectorDesktop.Properties {
             }
             set {
                 this["LogFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Setting {
+            get {
+                return ((int)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int runID {
+            get {
+                return ((int)(this["runID"]));
+            }
+            set {
+                this["runID"] = value;
             }
         }
     }

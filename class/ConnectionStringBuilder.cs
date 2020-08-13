@@ -1,7 +1,7 @@
 ﻿using System.Data.Sql;
 using System.Data.SqlClient;
 
-namespace DarkSkyCollectorDesktop
+namespace WeatherCollectorDesktop
 {
     class ConnectionStringBuilder
 {

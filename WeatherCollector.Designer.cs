@@ -1,6 +1,6 @@
-﻿namespace DarkSkyCollectorDesktop
+﻿namespace WeatherCollectorDesktop
 {
-    partial class DarkSkyCollector
+    partial class WeatherCollector
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DarkSkyCollector));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WeatherCollector));
             this.btn_Start = new System.Windows.Forms.Button();
             this.btn_Stop = new System.Windows.Forms.Button();
             this.lblCountDown = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lnkLblHelp = new System.Windows.Forms.LinkLabel();
             this.btnExportLogs = new System.Windows.Forms.Button();
             this.lnkLblSettings = new System.Windows.Forms.LinkLabel();
             this.lblDatabaseExist = new System.Windows.Forms.Label();
@@ -164,16 +164,17 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
             // 
-            // linkLabel1
+            // lnkLblHelp
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.linkLabel1.Location = new System.Drawing.Point(375, 292);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(29, 13);
-            this.linkLabel1.TabIndex = 12;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Help";
+            this.lnkLblHelp.AutoSize = true;
+            this.lnkLblHelp.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lnkLblHelp.Location = new System.Drawing.Point(375, 292);
+            this.lnkLblHelp.Name = "lnkLblHelp";
+            this.lnkLblHelp.Size = new System.Drawing.Size(29, 13);
+            this.lnkLblHelp.TabIndex = 12;
+            this.lnkLblHelp.TabStop = true;
+            this.lnkLblHelp.Text = "Help";
+            this.lnkLblHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLblHelp_LinkClicked);
             // 
             // btnExportLogs
             // 
@@ -207,6 +208,7 @@
             this.lblDatabaseExist.Size = new System.Drawing.Size(170, 13);
             this.lblDatabaseExist.TabIndex = 15;
             this.lblDatabaseExist.Text = "DATABASE DOESN\'T EXIST";
+            this.lblDatabaseExist.Visible = false;
             // 
             // DarkSkyCollector
             // 
@@ -216,7 +218,7 @@
             this.Controls.Add(this.lblDatabaseExist);
             this.Controls.Add(this.lnkLblSettings);
             this.Controls.Add(this.btnExportLogs);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.lnkLblHelp);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -231,7 +233,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DarkSkyCollector";
-            this.Text = "Dark Sky Weather Collector";
+            this.Text = "Weather Collector";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,7 +254,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lnkLblHelp;
         private System.Windows.Forms.Button btnExportLogs;
         private System.Windows.Forms.LinkLabel lnkLblSettings;
         private System.Windows.Forms.Label lblDatabaseExist;

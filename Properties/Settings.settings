@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DarkSkyCollectorDesktop.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WeatherCollectorDesktop.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="ServerName" Type="System.String" Scope="User">
@@ -17,22 +17,22 @@
     <Setting Name="RefreshInterval" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">900</Value>
     </Setting>
-    <Setting Name="DarkSkyAPIKey" Type="System.String" Scope="User">
+    <Setting Name="weatherAPIKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DarkSkyExclusions" Type="System.String" Scope="User">
+    <Setting Name="weatherExclusions" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DarkSkyLang" Type="System.String" Scope="User">
+    <Setting Name="weatherLang" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DarkSkyLat" Type="System.String" Scope="User">
+    <Setting Name="weatherLat" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DarkSkyLong" Type="System.String" Scope="User">
+    <Setting Name="weatherLong" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DarkSkyUnits" Type="System.String" Scope="User">
+    <Setting Name="weatherUnits" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LogPath" Type="System.String" Scope="User">
@@ -43,6 +43,12 @@
     </Setting>
     <Setting Name="LogFile" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Setting" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="runID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

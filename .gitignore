@@ -10,6 +10,14 @@
 *.userosscache
 *.sln.docstates
 
+#WebConfig
+*[Ww]eb.[Dd]ebug.[Cc]onfig
+*[Ww]eb.[Rr]elease.[Cc]onfig
+
+*[Pp]roperties/*
+
+*[Pp]ackages.config
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -29,7 +37,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-[Ll]ogs/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -43,10 +50,9 @@ Generated\ Files/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
-# NUnit
+# NUNIT
 *.VisualState.xml
 TestResult.xml
-nunit-*.xml
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
@@ -187,8 +193,6 @@ PublishScripts/
 
 # NuGet Packages
 *.nupkg
-# NuGet Symbol Packages
-*.snupkg
 # The packages folder can be ignored because of Package Restore
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
@@ -264,9 +268,7 @@ ServiceFabricBackup/
 *.bim.layout
 *.bim_*.settings
 *.rptproj.rsuser
-*- [Bb]ackup.rdl
-*- [Bb]ackup ([0-9]).rdl
-*- [Bb]ackup ([0-9][0-9]).rdl
+*- Backup*.rdl
 
 # Microsoft Fakes
 FakesAssemblies/
@@ -349,5 +351,5 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-# Ionide (cross platform F# VS Code tools) working folder
-.ionide/
+#Custom
+.DS_Store
