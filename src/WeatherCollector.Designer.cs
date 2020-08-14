@@ -51,7 +51,7 @@
             // 
             // btn_Start
             // 
-            this.btn_Start.Location = new System.Drawing.Point(61, 120);
+            this.btn_Start.Location = new System.Drawing.Point(158, 127);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(92, 23);
             this.btn_Start.TabIndex = 0;
@@ -61,9 +61,9 @@
             // 
             // btn_Stop
             // 
-            this.btn_Stop.Location = new System.Drawing.Point(253, 120);
+            this.btn_Stop.Location = new System.Drawing.Point(158, 127);
             this.btn_Stop.Name = "btn_Stop";
-            this.btn_Stop.Size = new System.Drawing.Size(86, 23);
+            this.btn_Stop.Size = new System.Drawing.Size(92, 23);
             this.btn_Stop.TabIndex = 1;
             this.btn_Stop.Text = "Stop Collecting";
             this.btn_Stop.UseVisualStyleBackColor = true;
@@ -124,11 +124,11 @@
             // 
             // txtLogging
             // 
-            this.txtLogging.Location = new System.Drawing.Point(61, 165);
+            this.txtLogging.Location = new System.Drawing.Point(12, 165);
             this.txtLogging.Multiline = true;
             this.txtLogging.Name = "txtLogging";
             this.txtLogging.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLogging.Size = new System.Drawing.Size(278, 87);
+            this.txtLogging.Size = new System.Drawing.Size(392, 87);
             this.txtLogging.TabIndex = 8;
             // 
             // label3
@@ -145,7 +145,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 289);
+            this.label4.Location = new System.Drawing.Point(12, 258);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 10;
@@ -154,7 +154,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(104, 289);
+            this.lblStatus.Location = new System.Drawing.Point(104, 258);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(30, 13);
             this.lblStatus.TabIndex = 11;
@@ -178,7 +178,7 @@
             // 
             // btnExportLogs
             // 
-            this.btnExportLogs.Location = new System.Drawing.Point(264, 258);
+            this.btnExportLogs.Location = new System.Drawing.Point(329, 258);
             this.btnExportLogs.Name = "btnExportLogs";
             this.btnExportLogs.Size = new System.Drawing.Size(75, 23);
             this.btnExportLogs.TabIndex = 13;
@@ -232,7 +232,7 @@
             this.Controls.Add(this.btn_Start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "DarkSkyCollector";
+            this.Name = "WeatherCollector";
             this.Text = "Weather Collector";
             this.ResumeLayout(false);
             this.PerformLayout();
