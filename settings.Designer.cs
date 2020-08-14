@@ -44,6 +44,7 @@
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.BtnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lnkLbl_Location = new System.Windows.Forms.LinkLabel();
             this.lblLang = new System.Windows.Forms.Label();
             this.chkListUnits = new System.Windows.Forms.CheckedListBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -185,6 +186,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lnkLbl_Location);
             this.groupBox1.Controls.Add(this.lblLang);
             this.groupBox1.Controls.Add(this.chkListUnits);
             this.groupBox1.Controls.Add(this.label8);
@@ -195,15 +197,26 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(14, 170);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 260);
+            this.groupBox1.Size = new System.Drawing.Size(344, 275);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "API Settings";
             // 
+            // lnkLbl_Location
+            // 
+            this.lnkLbl_Location.AutoSize = true;
+            this.lnkLbl_Location.Location = new System.Drawing.Point(16, 119);
+            this.lnkLbl_Location.Name = "lnkLbl_Location";
+            this.lnkLbl_Location.Size = new System.Drawing.Size(148, 13);
+            this.lnkLbl_Location.TabIndex = 19;
+            this.lnkLbl_Location.TabStop = true;
+            this.lnkLbl_Location.Text = "Latitude and Longitude Finder";
+            this.lnkLbl_Location.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLbl_Location_LinkClicked);
+            // 
             // lblLang
             // 
             this.lblLang.AutoSize = true;
-            this.lblLang.Location = new System.Drawing.Point(19, 238);
+            this.lblLang.Location = new System.Drawing.Point(19, 247);
             this.lblLang.Name = "lblLang";
             this.lblLang.Size = new System.Drawing.Size(35, 13);
             this.lblLang.TabIndex = 18;
@@ -215,7 +228,7 @@
             this.chkListUnits.Items.AddRange(new object[] {
             "metric",
             "imperial"});
-            this.chkListUnits.Location = new System.Drawing.Point(20, 132);
+            this.chkListUnits.Location = new System.Drawing.Point(20, 143);
             this.chkListUnits.Name = "chkListUnits";
             this.chkListUnits.Size = new System.Drawing.Size(120, 94);
             this.chkListUnits.TabIndex = 17;
@@ -335,7 +348,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 448);
+            this.label12.Location = new System.Drawing.Point(25, 453);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(325, 13);
             this.label12.TabIndex = 17;
@@ -413,5 +426,6 @@
         private System.Windows.Forms.TextBox txtLogRoot;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.LinkLabel lnkLbl_Location;
     }
 }

@@ -2,15 +2,12 @@
 
 
 <p align="center">
-<a href="https://github.com/NickeManarin/ScreenToGif/stargazers" target="_blank">
- <img alt="GitHub stars" src="https://img.shields.io/github/stars/NickeManarin/ScreenToGif.svg" />
-</a>
-<a href="https://github.com/NickeManarin/ScreenToGif/releases" target="_blank">
- <img alt="All releases" src="https://img.shields.io/github/downloads/NickeManarin/ScreenToGif/total.svg" />
-</a>
-<a href="https://chocolatey.org/packages/screentogif" target="_blank">
- <img alt="All Chocolatey releases" src="https://img.shields.io/chocolatey/dt/screentogif.svg" />
-</a>
+    <a href="https://github.com/BonzaOwl/WeatherCollector/stargazers" target="_blank">
+        <img alt="GitHub stars" src="https://img.shields.io/github/stars/BonzaOwl/WeatherCollector.svg" />
+    </a>
+    <a href="https://github.com/BonzaOwl/WeatherCollector/releases" target="_blank">
+        <img alt="All releases" src="https://img.shields.io/github/downloads/BonzaOwl/WeatherCollector/total.svg" />
+    </a>
 </p>
 
 <h1 align="center">Weather Harvest </h1>
@@ -54,10 +51,6 @@ Weather Harvest is a Windows Forms application written in C# that makes use of t
 - Refresh Interval - This is the frequency in milliseconds that the application will request data from the API, *free accounts are limited to 60 calls per minute*
 
 ---
-
-## How to use it
-
-Download the latest version from the releases tab and simply run it. There are no dependencies required.
 
 ## I found a bug
 

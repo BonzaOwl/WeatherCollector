@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace WeatherCollectorDesktop
@@ -93,6 +94,11 @@ namespace WeatherCollectorDesktop
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lnkLbl_Location_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.latlong.net");
         }
     }
 }
