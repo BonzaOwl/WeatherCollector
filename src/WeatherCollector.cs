@@ -122,7 +122,7 @@ namespace WeatherCollectorDesktop
 
                 catch (Exception ex)
                 {
-                    txtLogging.AppendText(DateTime.Now.ToLongTimeString() + ex.Message.ToString() + Environment.NewLine);
+                    txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " " +  ex.Message.ToString() + Environment.NewLine);
                     lblDatabaseExist.Visible = true;
                     lblDatabaseExist.Text = "DATABASE DOESN'T EXIST";
                 }
@@ -228,7 +228,7 @@ namespace WeatherCollectorDesktop
                     }
                     catch (Exception ex)
                     {
-                        txtLogging.AppendText(DateTime.Now.ToLongTimeString() + ex.Message.ToString() + Environment.NewLine);
+                        txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
                     }
                 }
             }            
@@ -250,103 +250,37 @@ namespace WeatherCollectorDesktop
             long sunset = forecastJson.current.sunset;
             DateTime dtSunset = FromUnixTime.Convert(sunset);
 
-            decimal? rain = forecastJson.current.rain; //Changed to OpenWeather Schema
+            decimal? rain = forecastJson.current.rain; 
 
-            if (rain == null)
-            {
-                rain = 00.00m;
-            }
+            decimal? snow = forecastJson.current.snow;         
 
-            decimal? snow = forecastJson.current.snow; //Changed to OpenWeather Schema
+            decimal? temperature = forecastJson.current.temp;
 
-            if (snow == null)
-            {
-                snow = 00.00m;
-            }           
+            decimal? apparentTemperature = forecastJson.current.feels_like;
 
-            decimal? temperature = forecastJson.current.temp; //Changed to OpenWeather Schema
+            decimal? windSpeed = forecastJson.current.wind_speed;
 
-            if (temperature == null)
-            {
-                temperature = 00.00m;
-            }
+            decimal? windGust = forecastJson.current.wind_gust;
 
-            decimal? apparentTemperature = forecastJson.current.feels_like; //Changed to OpenWeather Schema
+            decimal? windBearing = forecastJson.current.wind_deg; 
 
-            if (apparentTemperature == null)
-            {
-                apparentTemperature = 00.00m;
-            }
+            decimal? dewPoint = forecastJson.current.dew_point;
 
-            decimal? windSpeed = forecastJson.current.wind_speed; //Changed to OpenWeather Schema
+            decimal? humidity = forecastJson.current.humidity; 
 
-            if (windSpeed == null)
-            {
-                windSpeed = 00.00m;
-            }
+            decimal? pressure = forecastJson.current.pressure; 
 
-            decimal? windGust = forecastJson.current.wind_gust; //Changed to OpenWeather Schema
+            decimal? cloudCover = forecastJson.current.clouds; 
 
-            if (windGust == null)
-            {
-                windGust = 00.00m;
-            }
+            decimal? uvIndex = forecastJson.current.uvi;
 
-            decimal? windBearing = forecastJson.current.wind_deg; //Changed to OpenWeather Schema
+            decimal? visibility = forecastJson.current.visibility;
 
-            if (windBearing == null)
-            {
-                windBearing = 00.00m;
-            }
 
-            decimal? dewPoint = forecastJson.current.dew_point; //Changed to OpenWeather Schema
-
-            if (dewPoint == null)
-            {
-                dewPoint = 00.00m;
-            }
-
-            decimal? humidity = forecastJson.current.humidity; //This doesn't need changing
-
-            if (humidity == null)
-            {
-                humidity = 00.00m;
-            }
-
-            decimal? pressure = forecastJson.current.pressure; //This doesn't need changing
-
-            if (pressure == null)
-            {
-                pressure = 00.00m;
-            }
-
-            decimal? cloudCover = forecastJson.current.clouds; //Changed to OpenWeather Schema
-
-            if (cloudCover == null)
-            {
-                cloudCover = 00.00m;
-            }
-
-            decimal? uvIndex = forecastJson.current.uvi; //Changed to OpenWeather Schema
-
-            if (uvIndex == null)
-            {
-                uvIndex = 00.00m;
-            }
-
-            decimal? visibility = forecastJson.current.visibility; //This doesn't need changing
-
-            if (visibility == null)
-            {
-                visibility = 00.00m;
-            }
 
             decimal? ozone = forecastJson.current.ozone;
 
-            if (ozone == null)
-            {
-                ozone = 00.00m;
-            }
+
 
             SaveWeatherData(runID, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
         }
@@ -393,7 +327,7 @@ namespace WeatherCollectorDesktop
 
                 catch (Exception ex)
                 {
-                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + ex.Message.ToString() + Environment.NewLine);
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
                 }
 
         }
@@ -440,7 +374,7 @@ namespace WeatherCollectorDesktop
 
                 catch (Exception ex)
                 {
-                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + ex.Message.ToString() + Environment.NewLine);
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
                 }
         }        
 
@@ -463,11 +397,10 @@ namespace WeatherCollectorDesktop
                     SaveWeatherData.Parameters.Add("@runGuid", SqlDbType.UniqueIdentifier);
                     SaveWeatherData.Parameters["@runGuid"].Value = runGuid;
 
-                    if (rain != 00.00m)
+                    if (rain != null)
                     {
                         SaveWeatherData.Parameters.Add("@rain", SqlDbType.Decimal);
                         SaveWeatherData.Parameters["@rain"].Value = rain;
-
                     }
                     else
                     {
@@ -475,11 +408,10 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@rain"].Value = DBNull.Value;
                     }
 
-                    if(snow != 00.00m)
+                    if(snow != null)
                     {
                         SaveWeatherData.Parameters.Add("@snow", SqlDbType.Decimal);
                         SaveWeatherData.Parameters["@snow"].Value = snow;
-
                     }
                     else
                     {
@@ -487,7 +419,7 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@snow"].Value = DBNull.Value;
                     }                    
 
-                    if (temperature != 00.00m)
+                    if (temperature != null)
                     {
                         SaveWeatherData.Parameters.Add("@temperature", SqlDbType.Decimal);
                         SaveWeatherData.Parameters["@temperature"].Value = temperature;
@@ -498,7 +430,7 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@temperature"].Value = DBNull.Value;
                     }
 
-                    if (apparentTemperature != 00.00m)
+                    if (apparentTemperature != null)
                     {
                         SaveWeatherData.Parameters.Add("@apparentTemperature", SqlDbType.Decimal);
                         SaveWeatherData.Parameters["@apparentTemperature"].Value = apparentTemperature;
@@ -509,7 +441,7 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@apparentTemperature"].Value = DBNull.Value;
                     }
 
-                    if (windSpeed != 00.00m)
+                    if (windSpeed != null)
 
                     {
                         SaveWeatherData.Parameters.Add("@windSpeed", SqlDbType.Decimal);
@@ -522,7 +454,7 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@windSpeed"].Value = DBNull.Value;
                     }
 
-                    if (windGust != 00.00m)
+                    if (windGust != null)
                     {
                         SaveWeatherData.Parameters.Add("@windGust", SqlDbType.Decimal);
                         SaveWeatherData.Parameters["@windGust"].Value = windGust;
@@ -533,7 +465,7 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@windGust"].Value = DBNull.Value;
                     }
 
-                    if (windBearing != 00.00m)
+                    if (windBearing != null)
                     {
                         SaveWeatherData.Parameters.Add("@windBearing", SqlDbType.Decimal);
                         SaveWeatherData.Parameters["@windBearing"].Value = windBearing;
@@ -545,7 +477,7 @@ namespace WeatherCollectorDesktop
                     }
 
                     SaveWeatherData.Parameters.Add("@dewPoint", SqlDbType.Decimal);
-                    if (dewPoint != 00.00m)
+                    if (dewPoint != null)
                     {
                         SaveWeatherData.Parameters["@dewPoint"].Value = dewPoint;
                     }
@@ -554,9 +486,8 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@dewPoint"].Value = DBNull.Value;
                     }
 
-
                     SaveWeatherData.Parameters.Add("@humidity", SqlDbType.Decimal);
-                    if (humidity != 00.00m)
+                    if (humidity != null)
                     {
                         SaveWeatherData.Parameters["@humidity"].Value = humidity;
                     }
@@ -567,7 +498,7 @@ namespace WeatherCollectorDesktop
                     }
 
                     SaveWeatherData.Parameters.Add("@pressure", SqlDbType.Decimal);
-                    if (pressure != 00.00m)
+                    if (pressure != null)
                     {
                         SaveWeatherData.Parameters["@pressure"].Value = pressure;
                     }
@@ -576,9 +507,8 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData.Parameters["@pressure"].Value = DBNull.Value;
                     }
 
-
                     SaveWeatherData.Parameters.Add("@cloudCover", SqlDbType.Decimal);
-                    if (cloudCover != 00.00m)
+                    if (cloudCover != null)
                     {
                         SaveWeatherData.Parameters["@cloudCover"].Value = cloudCover;
                     }
@@ -588,7 +518,7 @@ namespace WeatherCollectorDesktop
                     }
 
                     SaveWeatherData.Parameters.Add("@uvIndex", SqlDbType.Decimal);
-                    if (uvIndex != 00.00m)
+                    if (uvIndex != null)
                     {
                         SaveWeatherData.Parameters["@uvIndex"].Value = uvIndex;
                     }
@@ -598,7 +528,7 @@ namespace WeatherCollectorDesktop
                     }
 
                     SaveWeatherData.Parameters.Add("@visibility", SqlDbType.Decimal);
-                    if (visibility != 00.00m)
+                    if (visibility != null)
                     {
                         SaveWeatherData.Parameters["@visibility"].Value = visibility;
                     }
@@ -608,7 +538,7 @@ namespace WeatherCollectorDesktop
                     }
 
                     SaveWeatherData.Parameters.Add("@ozone", SqlDbType.Decimal);
-                    if (ozone != 00.00m)
+                    if (ozone != null)
                     {
                         SaveWeatherData.Parameters["@ozone"].Value = ozone;
                     }
@@ -624,7 +554,7 @@ namespace WeatherCollectorDesktop
 
                 catch (Exception ex)
                 {
-                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + ex.Message.ToString() + Environment.NewLine);
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
                 }
         }
 
@@ -664,7 +594,7 @@ namespace WeatherCollectorDesktop
             }
             catch (Exception ex)
             {
-                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + ex.Message.ToString() + Environment.NewLine);
+                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
             }
 
         }
