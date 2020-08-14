@@ -17,9 +17,13 @@ Weather Collector is a Windows Forms application written in C# that makes use of
 </p>
 
 # Main Application Window
-<p align="center">
-<img src="assets\main-screen.png">
+
+<p style="float: left; font-size: 9pt; text-align: center; width: 50%;">
+<img align="left" src="assets\main-screen-nodb.png"></p>
+<p style="float: right; font-size: 9pt; text-align: center; width: 50%;">
+<img align="right" src="assets\main-screen.png">
 </p>
+<p style="clear: both;">
 
 # Settings Screen
 <p align="center">
