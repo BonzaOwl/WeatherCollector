@@ -61,6 +61,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblRefreshInfo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -356,6 +357,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.lblRefreshInfo);
             this.groupBox4.Controls.Add(this.txtRefresh);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Location = new System.Drawing.Point(374, 170);
@@ -364,6 +366,15 @@
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Application Settings";
+            // 
+            // lblRefreshInfo
+            // 
+            this.lblRefreshInfo.AutoSize = true;
+            this.lblRefreshInfo.Location = new System.Drawing.Point(20, 71);
+            this.lblRefreshInfo.Name = "lblRefreshInfo";
+            this.lblRefreshInfo.Size = new System.Drawing.Size(63, 13);
+            this.lblRefreshInfo.TabIndex = 8;
+            this.lblRefreshInfo.Text = "milliseconds";
             // 
             // settings
             // 
@@ -427,5 +438,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.LinkLabel lnkLbl_Location;
+        private System.Windows.Forms.Label lblRefreshInfo;
     }
 }
