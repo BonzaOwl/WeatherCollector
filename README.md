@@ -59,24 +59,25 @@ Weather Collector is a Windows Forms application written in C# that makes use of
 
 | Column Name | DataType          | Constraint | Default | Description  |
 |-------------|-------------------|------------|---------|------------- |
-|runID        |INT                |Primary KEY        | None    |              |
+|runID        |INT                |Primary KEY        | None    | Uniquie key to identify the run             |
 |runGuid      |UNIQUEIDENTIFIER   | None       | None    |              |
-|runTime      |DATETIME           |None        | None    |              |
-|longitude    |FLOAT              |None        | None    |              |
-|latitude     |FLOAT              |None        | None    |              |
-|timeZone     |nvarchar(200)      | None       | None    |              |
-|timeZoneOffset |nvarchar(200)    | None       | None    |              |
-|invalid      |BIT                |None        | 0    |              |
-|Deleted      |BIT                |None        | 0    |              |
+|runTime      |DATETIME           |None        | None    | Time of the forecasted data              |
+|units | varchar(10) | None | None | Requested unit type (metric or imperial) |
+|longitude    |FLOAT              |None        | None    | Longitude requested             |
+|latitude     |FLOAT              |None        | None    | Latitude requested            |
+|timeZone     |nvarchar(200)      | None       | None    | Timezone requested             |
+|timeZoneOffset |nvarchar(200)    | None       | None    | Shift in seconds from UTC              |
+|invalid      |BIT                |None        | 0    | To allow for the run to be marked as invalid             |
+|Deleted      |BIT                |None        | 0    | To allow for the run to be deleted             |
 
 ## rawWeatherData
 
 | Column Name | DataType          | Constraint | Default | Description  |
 |-------------|-------------------|------------|---------|------------- |
 |ID           |INT                |Primary KEY | None    |              |
-|runID        |INT                |Foreign KEY | None    |              |
+|runID        |INT                |Foreign KEY | None    | Uniquie key to identify the run              |
 |runGuid      |UNIQUEIDENTIFIER   |None        | None    |              |
-|rawData      |NVARCHAR(MAX)      |None        | None    |              |
+|rawData      |NVARCHAR(MAX)      |None        | None    | Returned JSON data             |
 
 ## weatherData
 
@@ -96,10 +97,10 @@ Weather Collector is a Windows Forms application written in C# that makes use of
 
 | Column Name | DataType          | Constraint | Default | Description  |
 |-------------|-------------------|------------|---------|------------- |
-|ID           |INT                |Primary KEY | None    |              |
-|runID        |INT                |Foreign KEY | None    |              |
+|ID           |INT                |Primary KEY | None    |               |
+|runID        |INT                |Foreign KEY | None    | Unique identifier for the row of data             |
 |runGuid      |UNIQUEIDENTIFIER   |None        | None    |              |
-|temperature      |DECIMAL(4,2)      |None        | None    |              |
+|temperature      |DECIMAL(4,2)      |None        | None    | Temprature stored in the requested unit format             |
 |apparentTemperature      |DECIMAL(4,2)      |None        | None    |              |
 |windSpeed      |DECIMAL(4,2)      |None        | None    |              |
 |windGust      |DECIMAL(4,2)      |None        | None    |              |
