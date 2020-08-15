@@ -241,3 +241,63 @@ BEGIN
 	)
 
 END;
+
+GO
+
+CREATE OR ALTER VIEW [dbo].[allWeatherData]
+
+AS
+
+SELECT  
+    rd.runID,
+    rd.runGuid,
+    rd.runTime,
+    rwd.rawData,
+    cd.temperature, 
+    cd.apparentTemperature, 
+    cd.windSpeed, 
+    cd.windGust, 
+    cd.windBearing, 
+    cd.dewPoint, 
+    cd.humidity, 
+    cd.pressure, 
+    cd.cloudCover, 
+    cd.uvIndex, 
+    cd.visibility, 
+    cd.ozone
+FROM 
+    dbo.runData rd
+
+    INNER JOIN dbo.currentlyData cd ON
+        cd.runID = rd.runID
+
+    INNER JOIN [dbo].[rawWeatherData] rwd ON
+        rwd.runID = rd.runID
+
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[getHistory]
+
+AS
+
+SELECT 
+
+    [runid]
+    ,[runGuid]
+    ,[runTime]
+    ,[rawData]    
+    ,[temperature]
+    ,[apparentTemperature]
+    ,[windSpeed]
+    ,[windGust]
+    ,[windBearing]
+    ,[dewPoint]
+    ,[humidity]
+    ,[pressure]
+    ,[cloudCover]
+    ,[uvIndex]
+    ,[visibility]
+    ,[ozone]
+      
+FROM [dbo].[allWeatherData]
+GO

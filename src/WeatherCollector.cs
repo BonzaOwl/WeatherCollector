@@ -643,5 +643,11 @@ namespace WeatherCollectorDesktop
             new settings().Show();
             Hide();
         }
+
+        private void historyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new history().Show();
+            Hide();
+        }
     }
 }
