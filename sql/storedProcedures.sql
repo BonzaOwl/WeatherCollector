@@ -199,6 +199,7 @@ CREATE OR ALTER PROC SaveRunData
 @runID INT,
 @runGuid UNIQUEIDENTIFIER,
 @runTime DATETIME,
+@units VARCHAR(10),
 @longitude FLOAT,
 @latitude FLOAT,
 @timeZone nvarchar(200),
@@ -208,9 +209,9 @@ AS
 
 BEGIN
 
-    INSERT INTO runData (runID, runGuid, runTime, longitude, latitude, timeZone, timeZoneOffset)
+    INSERT INTO runData (runID, runGuid, runTime, longitude, latitude, timeZone, timeZoneOffset, units)
     VALUES
-    (@runID,@runGuid,@runTime,@longitude,@latitude,@timeZone,@timeZoneOffset)
+    (@runID,@runGuid,@runTime,@longitude,@latitude,@timeZone,@timeZoneOffset,@units)
 
 END
 

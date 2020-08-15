@@ -16,6 +16,7 @@ CREATE TABLE runData
     runID INT NOT NULL,
     runGuid UNIQUEIDENTIFIER NOT NULL,
     runTime DATETIME NOT NULL,
+	units varchar(10),
     longitude FLOAT NULL,
     latitude FLOAT NULL,
     timeZone nvarchar(200),
