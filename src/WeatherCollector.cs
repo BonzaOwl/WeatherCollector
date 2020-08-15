@@ -117,6 +117,8 @@ namespace WeatherCollectorDesktop
                     if(retunvalue == 0)                    
                     {
                         lblDatabaseExist.Visible = true;
+                        lblExecutions.Visible = false;
+                        lblRunTimes.Visible = false;
                     }                    
                 }
 
@@ -242,7 +244,9 @@ namespace WeatherCollectorDesktop
             string timeZone = forecastJson.timezone;
             string timeZoneOffset = forecastJson.timezone_offset;
 
-            SaveRunData(runID, runGuid, runTime, longitude, latitude, timeZone, timeZoneOffset);
+            string units = Properties.Settings.Default.weatherUnits;
+
+            SaveRunData(runID, runGuid, runTime, longitude, latitude, timeZone, timeZoneOffset, units);
 
             long sunrise = forecastJson.current.sunrise;
             DateTime dtSunrise = FromUnixTime.Convert(sunrise);
@@ -285,7 +289,7 @@ namespace WeatherCollectorDesktop
             SaveWeatherData(runID, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
         }
 
-        private void SaveRunData(int runID, Guid runGuid, DateTime runTime, float? longitude, float? latitude, string timeZone, string timeZoneOffset)
+        private void SaveRunData(int runID, Guid runGuid, DateTime runTime, float? longitude, float? latitude, string timeZone, string timeZoneOffset, string units)
         {
             var sqldb_connection = ConnectionStringBuilder.ConnectionString();
             using (SqlConnection con = new SqlConnection(sqldb_connection))
@@ -297,6 +301,16 @@ namespace WeatherCollectorDesktop
                     {
                         CommandType = CommandType.StoredProcedure
                     };
+
+                    SaveRunData.Parameters.Add("@units", SqlDbType.VarChar, 10);
+                    if (units != null)
+                    {
+                        SaveRunData.Parameters["@units"].Value = units;
+                    }
+                    else
+                    {
+                        SaveRunData.Parameters["@units"].Value = DBNull.Value;
+                    }
 
                     SaveRunData.Parameters.Add("@runID", SqlDbType.Int);
                     SaveRunData.Parameters["@runID"].Value = runID;
@@ -521,8 +535,7 @@ namespace WeatherCollectorDesktop
                     if (uvIndex != null)
                     {
                         SaveWeatherData.Parameters["@uvIndex"].Value = uvIndex;
-                    }
-                    else
+                    } else
                     {
                         SaveWeatherData.Parameters["@uvIndex"].Value = DBNull.Value;
                     }
@@ -531,8 +544,7 @@ namespace WeatherCollectorDesktop
                     if (visibility != null)
                     {
                         SaveWeatherData.Parameters["@visibility"].Value = visibility;
-                    }
-                    else
+                    } else
                     {
                         SaveWeatherData.Parameters["@visibility"].Value = DBNull.Value;
                     }
@@ -541,8 +553,7 @@ namespace WeatherCollectorDesktop
                     if (ozone != null)
                     {
                         SaveWeatherData.Parameters["@ozone"].Value = ozone;
-                    }
-                    else
+                    } else
                     {
                         SaveWeatherData.Parameters["@ozone"].Value = DBNull.Value;
                     }
@@ -608,6 +619,29 @@ namespace WeatherCollectorDesktop
         private void LnkLblHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/BonzaOwl/WeatherCollector");
+        }
+
+        private void WeatherCollector_Resize(object sender, EventArgs e)
+        {
+            if(FormWindowState.Minimized == this.WindowState)
+            {                
+                trayIcon.ShowBalloonTip(500);
+                this.Hide();
+            }             
+        }
+
+        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            trayIcon.Visible = false;
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new settings().Show();
+            Hide();
         }
     }
 }
