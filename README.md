@@ -55,6 +55,8 @@ Weather Collector is a Windows Forms application written in C# that makes use of
 
 ## Database Schema
 
+Below is a breakdown of the database schema used in the backend of this application.
+
 ## runData
 
 | Column Name | DataType          | Constraint | Default | Description  |
