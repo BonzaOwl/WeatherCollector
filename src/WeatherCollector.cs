@@ -117,8 +117,7 @@ namespace WeatherCollectorDesktop
                     if(retunvalue == 0)                    
                     {
                         lblDatabaseExist.Visible = true;
-                        lblExecutions.Visible = false;
-                        lblRunTimes.Visible = false;
+                        
                     }                    
                 }
 
@@ -127,6 +126,9 @@ namespace WeatherCollectorDesktop
                     txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " " +  ex.Message.ToString() + Environment.NewLine);
                     lblDatabaseExist.Visible = true;
                     lblDatabaseExist.Text = "DATABASE DOESN'T EXIST";
+                    lblExecutions.Visible = false;
+                    lblRunTimes.Visible = false; 
+                    btn_Start.Visible = false; //Can't collect data as we have nowhere to save it, hide the button
                 }
         }
 
@@ -223,7 +225,10 @@ namespace WeatherCollectorDesktop
                         int id = obj.Id;
                         string main = obj.Main;
                         string description = obj.Description;
-                        string icon = obj.Icon;                       
+                        string icon = obj.Icon;
+                        int iconID = GetIconID.iconid(icon);
+
+                        SaveWeatherData(runID, runGuid, id, main, description, iconID);
 
                         txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Saving alert data to the database" + Environment.NewLine);
                         
@@ -280,13 +285,9 @@ namespace WeatherCollectorDesktop
 
             decimal? visibility = forecastJson.current.visibility;
 
-
-
             decimal? ozone = forecastJson.current.ozone;
 
-
-
-            SaveWeatherData(runID, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
+            SaveCurrentlyData(runID, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
         }
 
         private void SaveRunData(int runID, Guid runGuid, DateTime runTime, float? longitude, float? latitude, string timeZone, string timeZoneOffset, string units)
@@ -346,6 +347,38 @@ namespace WeatherCollectorDesktop
 
         }
 
+        private void SaveWeatherData(int runID, Guid runGuid, int CollectionID, string summary, string description, int icon)
+        {
+            var sqldb_connection = ConnectionStringBuilder.ConnectionString();
+            using (SqlConnection con = new SqlConnection(sqldb_connection))
+                try
+                {
+                    con.Open();
+
+                    SqlCommand SaveWeatherData = new SqlCommand("[dbo].[SaveWeatherData]", con)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    SaveWeatherData.Parameters.Add("@runID", SqlDbType.Int);
+                    SaveWeatherData.Parameters["@runID"].Value = runID;
+
+                    SaveWeatherData.Parameters.Add("@runGuid", SqlDbType.UniqueIdentifier);
+                    SaveWeatherData.Parameters["@runGuid"].Value = runGuid;                    
+
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Attempting to save weather run data to the database" + Environment.NewLine);
+                    SaveWeatherData.ExecuteNonQuery();
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Saving to the database was sucessful" + Environment.NewLine);
+
+                }
+
+                catch (Exception ex)
+                {
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
+                }
+
+        }
+
         private dynamic GetDeserializedData(string content)
         {
             dynamic forecastJson;
@@ -392,7 +425,7 @@ namespace WeatherCollectorDesktop
                 }
         }        
 
-        private void SaveWeatherData(int runID, Guid runGuid, Decimal? snow, Decimal? rain, Decimal? temperature, Decimal? apparentTemperature, Decimal? windSpeed, Decimal? windGust, Decimal? windBearing, Decimal? dewPoint, Decimal? humidity, Decimal? pressure, Decimal? cloudCover, Decimal? uvIndex, Decimal? visibility, Decimal? ozone)
+        private void SaveCurrentlyData(int runID, Guid runGuid, Decimal? snow, Decimal? rain, Decimal? temperature, Decimal? apparentTemperature, Decimal? windSpeed, Decimal? windGust, Decimal? windBearing, Decimal? dewPoint, Decimal? humidity, Decimal? pressure, Decimal? cloudCover, Decimal? uvIndex, Decimal? visibility, Decimal? ozone)
         {
             var sqldb_connection = ConnectionStringBuilder.ConnectionString();
             using (SqlConnection con = new SqlConnection(sqldb_connection))
