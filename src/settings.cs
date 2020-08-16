@@ -64,7 +64,7 @@ namespace WeatherCollectorDesktop
             }
             else
             {
-                string units = "units=";
+                string units = string.Empty;
                 for (int i = 0; i < chkListUnits.Items.Count; i++)
                 {
                     if (chkListUnits.GetItemChecked(i))
@@ -75,7 +75,6 @@ namespace WeatherCollectorDesktop
 
                 Properties.Settings.Default.weatherUnits = units;
             }
-
         }
 
         private void BtnSaveSettings_Click(object sender, EventArgs e)

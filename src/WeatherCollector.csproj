@@ -70,6 +70,12 @@
     <Compile Include="class\ConnectionStringBuilder.cs" />
     <Compile Include="class\ConstructRequestUrl.cs" />
     <Compile Include="class\FromUnixTime.cs" />
+    <Compile Include="history.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="history.Designer.cs">
+      <DependentUpon>history.cs</DependentUpon>
+    </Compile>
     <Compile Include="WeatherCollector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     <Compile Include="settings.Designer.cs">
       <DependentUpon>settings.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="history.resx">
+      <DependentUpon>history.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WeatherCollector.resx">
       <DependentUpon>WeatherCollector.cs</DependentUpon>
     </EmbeddedResource>

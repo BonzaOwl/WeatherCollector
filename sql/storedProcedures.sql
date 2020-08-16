@@ -199,6 +199,7 @@ CREATE OR ALTER PROC SaveRunData
 @runID INT,
 @runGuid UNIQUEIDENTIFIER,
 @runTime DATETIME,
+@units VARCHAR(10),
 @longitude FLOAT,
 @latitude FLOAT,
 @timeZone nvarchar(200),
@@ -208,9 +209,9 @@ AS
 
 BEGIN
 
-    INSERT INTO runData (runID, runGuid, runTime, longitude, latitude, timeZone, timeZoneOffset)
+    INSERT INTO runData (runID, runGuid, runTime, longitude, latitude, timeZone, timeZoneOffset, units)
     VALUES
-    (@runID,@runGuid,@runTime,@longitude,@latitude,@timeZone,@timeZoneOffset)
+    (@runID,@runGuid,@runTime,@longitude,@latitude,@timeZone,@timeZoneOffset,@units)
 
 END
 
@@ -240,3 +241,102 @@ BEGIN
 	)
 
 END;
+
+GO
+
+CREATE OR ALTER VIEW [dbo].[allWeatherData]
+
+AS
+
+SELECT  
+	rd.runID,
+    rd.runGuid,
+    rd.runTime,
+    rd.deleted,
+    rd.invalid,
+    rwd.rawData,
+    cd.temperature, 
+    cd.apparentTemperature, 
+    cd.windSpeed, 
+    cd.windGust, 
+    cd.windBearing, 
+    cd.dewPoint, 
+    cd.humidity, 
+    cd.pressure, 
+    cd.cloudCover, 
+    cd.uvIndex, 
+    cd.visibility, 
+    cd.ozone
+FROM 
+    dbo.runData rd
+
+    INNER JOIN dbo.currentlyData cd ON
+        cd.runID = rd.runID
+
+    INNER JOIN [dbo].[rawWeatherData] rwd ON
+        rwd.runID = rd.runID
+
+WHERE
+	CAST(runTime as DATE) = CAST(GETUTCDATE() as DATE)
+
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[getHistory]
+
+AS
+
+SELECT 
+
+    [runid]
+    ,[runGuid]
+    ,[runTime]
+    ,[rawData]    
+    ,[temperature]
+    ,[apparentTemperature]
+    ,[windSpeed]
+    ,[windGust]
+    ,[windBearing]
+    ,[dewPoint]
+    ,[humidity]
+    ,[pressure]
+    ,[cloudCover]
+    ,[uvIndex]
+    ,[visibility]
+    ,[ozone]
+      
+FROM [dbo].[allWeatherData]
+GO
+
+CREATE OR ALTER PROCEDURE updateHistory
+
+@runID INT,
+@invalid BIT,
+@delete BIT
+
+AS  
+  
+UPDATE 
+    [dbo].[runData] 
+SET 
+    invalid = @invalid,
+    deleted = @delete
+WHERE
+    runID = @runID
+
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[getIconID]
+
+@icon CHAR(3)
+
+AS
+
+SELECT 
+
+ID
+      
+FROM [ref].[Codes]
+
+WHERE Icon = @icon
+
+GO
