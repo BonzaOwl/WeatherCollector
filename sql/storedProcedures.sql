@@ -249,9 +249,11 @@ CREATE OR ALTER VIEW [dbo].[allWeatherData]
 AS
 
 SELECT  
-    rd.runID,
+	rd.runID,
     rd.runGuid,
     rd.runTime,
+    rd.deleted,
+    rd.invalid,
     rwd.rawData,
     cd.temperature, 
     cd.apparentTemperature, 
@@ -273,6 +275,9 @@ FROM
 
     INNER JOIN [dbo].[rawWeatherData] rwd ON
         rwd.runID = rd.runID
+
+WHERE
+	CAST(runTime as DATE) = CAST(GETUTCDATE() as DATE)
 
 GO
 
@@ -300,4 +305,38 @@ SELECT
     ,[ozone]
       
 FROM [dbo].[allWeatherData]
+GO
+
+CREATE OR ALTER PROCEDURE updateHistory
+
+@runID INT,
+@invalid BIT,
+@delete BIT
+
+AS  
+  
+UPDATE 
+    [dbo].[runData] 
+SET 
+    invalid = @invalid,
+    deleted = @delete
+WHERE
+    runID = @runID
+
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[getIconID]
+
+@icon CHAR(3)
+
+AS
+
+SELECT 
+
+ID
+      
+FROM [ref].[Codes]
+
+WHERE Icon = @icon
+
 GO
