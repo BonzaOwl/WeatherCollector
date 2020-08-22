@@ -214,5 +214,17 @@ namespace WeatherCollectorDesktop.Properties {
                 this["runID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string weatherLanguage {
+            get {
+                return ((string)(this["weatherLanguage"]));
+            }
+            set {
+                this["weatherLanguage"] = value;
+            }
+        }
     }
 }
