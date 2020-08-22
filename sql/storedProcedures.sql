@@ -327,7 +327,8 @@ GO
 
 CREATE OR ALTER PROCEDURE [dbo].[getIconID]
 
-@icon CHAR(3)
+@icon CHAR(3),
+@description varchar(100)
 
 AS
 
@@ -337,6 +338,8 @@ ID
       
 FROM [ref].[Codes]
 
-WHERE Icon = @icon
+WHERE 
+    Icon = @icon
+    AND Description = @description
 
 GO

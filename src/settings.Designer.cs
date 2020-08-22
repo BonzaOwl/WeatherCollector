@@ -44,6 +44,8 @@
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.BtnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LnkMoreInfo = new System.Windows.Forms.LinkLabel();
+            this.chkListLang = new System.Windows.Forms.CheckedListBox();
             this.lnkLbl_Location = new System.Windows.Forms.LinkLabel();
             this.lblLang = new System.Windows.Forms.Label();
             this.chkListUnits = new System.Windows.Forms.CheckedListBox();
@@ -62,6 +64,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblRefreshInfo = new System.Windows.Forms.Label();
+            this.LblUnitsHead = new System.Windows.Forms.Label();
+            this.LblLanguageHead = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -113,61 +117,66 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(22, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "API Key";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(17, 30);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Refresh Interval";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(192, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.Size = new System.Drawing.Size(119, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Database Password";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(23, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.Size = new System.Drawing.Size(91, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "Database User";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(195, 28);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 13);
+            this.label5.Size = new System.Drawing.Size(97, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "Database Name";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(26, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 13);
+            this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 11;
             this.label6.Text = "Server Name";
             // 
             // btnSaveSettings
             // 
-            this.btnSaveSettings.Location = new System.Drawing.Point(408, 438);
+            this.btnSaveSettings.Location = new System.Drawing.Point(509, 475);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(94, 23);
             this.btnSaveSettings.TabIndex = 12;
@@ -177,7 +186,7 @@
             // 
             // BtnClose
             // 
-            this.BtnClose.Location = new System.Drawing.Point(582, 438);
+            this.BtnClose.Location = new System.Drawing.Point(609, 475);
             this.BtnClose.Name = "BtnClose";
             this.BtnClose.Size = new System.Drawing.Size(75, 23);
             this.BtnClose.TabIndex = 13;
@@ -187,6 +196,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.LblLanguageHead);
+            this.groupBox1.Controls.Add(this.LblUnitsHead);
+            this.groupBox1.Controls.Add(this.LnkMoreInfo);
+            this.groupBox1.Controls.Add(this.chkListLang);
             this.groupBox1.Controls.Add(this.lnkLbl_Location);
             this.groupBox1.Controls.Add(this.lblLang);
             this.groupBox1.Controls.Add(this.chkListUnits);
@@ -198,26 +211,95 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(14, 170);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 275);
+            this.groupBox1.Size = new System.Drawing.Size(344, 308);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "API Settings";
             // 
+            // LnkMoreInfo
+            // 
+            this.LnkMoreInfo.AutoSize = true;
+            this.LnkMoreInfo.Location = new System.Drawing.Point(159, 283);
+            this.LnkMoreInfo.Name = "LnkMoreInfo";
+            this.LnkMoreInfo.Size = new System.Drawing.Size(71, 13);
+            this.LnkMoreInfo.TabIndex = 21;
+            this.LnkMoreInfo.TabStop = true;
+            this.LnkMoreInfo.Text = "Find out more";
+            this.LnkMoreInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkMoreInfo_LinkClicked);
+            // 
+            // chkListLang
+            // 
+            this.chkListLang.FormattingEnabled = true;
+            this.chkListLang.Items.AddRange(new object[] {
+            "af \t",
+            "al \t",
+            "ar ",
+            "az",
+            "bg",
+            "ca",
+            "cz",
+            "da",
+            "de",
+            "el",
+            "en",
+            "eu",
+            "fa",
+            "fi",
+            "fr",
+            "gl",
+            "he",
+            "hi",
+            "hr",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "kr",
+            "la",
+            "lt",
+            "mk",
+            "no",
+            "nl",
+            "pl",
+            "pt",
+            "pt_br",
+            "ro",
+            "ru",
+            "sv ",
+            "se \t",
+            "sk",
+            "sl",
+            "sp ",
+            "es \t",
+            "sr",
+            "th",
+            "tr",
+            "ua",
+            "uk \t\t",
+            "vi",
+            "zh_cn",
+            "zh_tw",
+            "zu"});
+            this.chkListLang.Location = new System.Drawing.Point(162, 181);
+            this.chkListLang.Name = "chkListLang";
+            this.chkListLang.Size = new System.Drawing.Size(120, 94);
+            this.chkListLang.TabIndex = 20;
+            // 
             // lnkLbl_Location
             // 
             this.lnkLbl_Location.AutoSize = true;
-            this.lnkLbl_Location.Location = new System.Drawing.Point(16, 119);
+            this.lnkLbl_Location.Location = new System.Drawing.Point(16, 133);
             this.lnkLbl_Location.Name = "lnkLbl_Location";
             this.lnkLbl_Location.Size = new System.Drawing.Size(148, 13);
             this.lnkLbl_Location.TabIndex = 19;
             this.lnkLbl_Location.TabStop = true;
             this.lnkLbl_Location.Text = "Latitude and Longitude Finder";
-            this.lnkLbl_Location.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLbl_Location_LinkClicked);
+            this.lnkLbl_Location.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLbl_Location_LinkClicked);
             // 
             // lblLang
             // 
             this.lblLang.AutoSize = true;
-            this.lblLang.Location = new System.Drawing.Point(19, 247);
+            this.lblLang.Location = new System.Drawing.Point(19, 283);
             this.lblLang.Name = "lblLang";
             this.lblLang.Size = new System.Drawing.Size(35, 13);
             this.lblLang.TabIndex = 18;
@@ -229,7 +311,7 @@
             this.chkListUnits.Items.AddRange(new object[] {
             "metric",
             "imperial"});
-            this.chkListUnits.Location = new System.Drawing.Point(20, 143);
+            this.chkListUnits.Location = new System.Drawing.Point(20, 181);
             this.chkListUnits.Name = "chkListUnits";
             this.chkListUnits.Size = new System.Drawing.Size(120, 94);
             this.chkListUnits.TabIndex = 17;
@@ -237,15 +319,16 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(194, 70);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(194, 84);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 13);
+            this.label8.Size = new System.Drawing.Size(57, 13);
             this.label8.TabIndex = 10;
             this.label8.Text = "Latitude ";
             // 
             // txtLat
             // 
-            this.txtLat.Location = new System.Drawing.Point(194, 89);
+            this.txtLat.Location = new System.Drawing.Point(194, 103);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(100, 20);
             this.txtLat.TabIndex = 9;
@@ -253,15 +336,16 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 70);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(19, 84);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.Size = new System.Drawing.Size(67, 13);
             this.label7.TabIndex = 8;
             this.label7.Text = "Longitude ";
             // 
             // txtLong
             // 
-            this.txtLong.Location = new System.Drawing.Point(19, 89);
+            this.txtLong.Location = new System.Drawing.Point(19, 103);
             this.txtLong.Name = "txtLong";
             this.txtLong.Size = new System.Drawing.Size(100, 20);
             this.txtLong.TabIndex = 7;
@@ -308,9 +392,10 @@
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(19, 76);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 13);
+            this.label11.Size = new System.Drawing.Size(63, 13);
             this.label11.TabIndex = 4;
             this.label11.Text = "File Name";
             // 
@@ -324,9 +409,10 @@
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(169, 28);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 13);
+            this.label10.Size = new System.Drawing.Size(78, 13);
             this.label10.TabIndex = 2;
             this.label10.Text = "Folder Name";
             // 
@@ -340,16 +426,17 @@
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(19, 28);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 13);
+            this.label9.Size = new System.Drawing.Size(87, 13);
             this.label9.TabIndex = 0;
             this.label9.Text = "Root Location";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 453);
+            this.label12.Location = new System.Drawing.Point(25, 485);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(325, 13);
             this.label12.TabIndex = 17;
@@ -376,11 +463,31 @@
             this.lblRefreshInfo.TabIndex = 8;
             this.lblRefreshInfo.Text = "milliseconds";
             // 
+            // LblUnitsHead
+            // 
+            this.LblUnitsHead.AutoSize = true;
+            this.LblUnitsHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUnitsHead.Location = new System.Drawing.Point(19, 162);
+            this.LblUnitsHead.Name = "LblUnitsHead";
+            this.LblUnitsHead.Size = new System.Drawing.Size(36, 13);
+            this.LblUnitsHead.TabIndex = 22;
+            this.LblUnitsHead.Text = "Units";
+            // 
+            // LblLanguageHead
+            // 
+            this.LblLanguageHead.AutoSize = true;
+            this.LblLanguageHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblLanguageHead.Location = new System.Drawing.Point(162, 162);
+            this.LblLanguageHead.Name = "LblLanguageHead";
+            this.LblLanguageHead.Size = new System.Drawing.Size(63, 13);
+            this.LblLanguageHead.TabIndex = 23;
+            this.LblLanguageHead.Text = "Language";
+            // 
             // settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 475);
+            this.ClientSize = new System.Drawing.Size(701, 506);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox3);
@@ -439,5 +546,9 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.LinkLabel lnkLbl_Location;
         private System.Windows.Forms.Label lblRefreshInfo;
+        private System.Windows.Forms.LinkLabel LnkMoreInfo;
+        private System.Windows.Forms.CheckedListBox chkListLang;
+        private System.Windows.Forms.Label LblLanguageHead;
+        private System.Windows.Forms.Label LblUnitsHead;
     }
 }
