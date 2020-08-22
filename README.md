@@ -23,6 +23,10 @@ Weather Collector is a Windows Forms application written in C# that makes use of
 <img src="assets\main-screen.png">
 </p>
 
+# History Screen
+<p align="center">
+<img src="assets\history-screen.png">
+</p>
 
 # Settings Screen
 <p align="center">
