@@ -1,6 +1,6 @@
 ﻿namespace WeatherCollectorDesktop
 {
-    partial class history
+    partial class History
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(history));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
             this.gvHistory = new System.Windows.Forms.DataGridView();
             this.lblHistoryHead = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             this.gvHistory.ReadOnly = true;
             this.gvHistory.Size = new System.Drawing.Size(1021, 471);
             this.gvHistory.TabIndex = 0;
-            this.gvHistory.DoubleClick += new System.EventHandler(this.gvHistory_DoubleClick);
+            this.gvHistory.DoubleClick += new System.EventHandler(this.GvHistory_DoubleClick);
             // 
             // lblHistoryHead
             // 
@@ -70,7 +70,7 @@
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // chkInvalid
             // 
@@ -90,7 +90,7 @@
             this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // chkDelete
             // 
@@ -110,7 +110,7 @@
             this.btnClear.TabIndex = 7;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // btnUpdate
             // 
@@ -121,7 +121,7 @@
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Visible = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // label1
             // 
