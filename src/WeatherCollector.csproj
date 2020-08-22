@@ -70,6 +70,7 @@
     <Compile Include="class\ConnectionStringBuilder.cs" />
     <Compile Include="class\ConstructRequestUrl.cs" />
     <Compile Include="class\FromUnixTime.cs" />
+    <Compile Include="class\GetIconID.cs" />
     <Compile Include="history.cs">
       <SubType>Form</SubType>
     </Compile>

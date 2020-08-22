@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace WeatherCollectorDesktop
 {
-    public partial class history : Form
+    public partial class History : Form
     {
         int runID = 0;
 
-        public history()
+        public History()
         {
             InitializeComponent();
             
@@ -97,14 +97,14 @@ namespace WeatherCollectorDesktop
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             WeatherCollector wc = new WeatherCollector();
             Hide();
             wc.Show();
         }
 
-        private void gvHistory_DoubleClick(object sender, EventArgs e)
+        private void GvHistory_DoubleClick(object sender, EventArgs e)
         {
             runID = Convert.ToInt32(gvHistory.CurrentRow.Cells[0].Value);
 
@@ -124,12 +124,12 @@ namespace WeatherCollectorDesktop
             }            
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e)
         {
             GetWeatherHistory();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
             runID = 0;
             chkDelete.Checked = false;
@@ -137,7 +137,7 @@ namespace WeatherCollectorDesktop
             btnUpdate.Visible = false;
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void BtnUpdate_Click(object sender, EventArgs e)
         {
             bool invalid = chkInvalid.Checked;
             bool deleted = chkDelete.Checked;

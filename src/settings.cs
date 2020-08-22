@@ -75,6 +75,34 @@ namespace WeatherCollectorDesktop
 
                 Properties.Settings.Default.weatherUnits = units;
             }
+
+            int langCount = V;
+
+            for (int i = 0; i < chkListLang.Items.Count; i++)
+            {
+                if (chkListLang.GetItemChecked(i))
+                {
+                    langCount += 1;
+                }
+            }
+
+            if (langCount > 1)
+            {
+                MessageBox.Show("You can't select more than one language", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string lang = string.Empty;
+                for (int i = 0; i < chkListLang.Items.Count; i++)
+                {
+                    if (chkListLang.GetItemChecked(i))
+                    {
+                        lang += (string)chkListLang.Items[i];
+                    }
+                }
+
+                Properties.Settings.Default.weatherLanguage = lang;
+            }
         }
 
         private void BtnSaveSettings_Click(object sender, EventArgs e)
@@ -90,12 +118,12 @@ namespace WeatherCollectorDesktop
             this.Hide();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void LnkMoreInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            Process.Start("https://openweathermap.org/api/one-call-api#multi");
         }
 
-        private void lnkLbl_Location_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LnkLbl_Location_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.latlong.net");
         }
