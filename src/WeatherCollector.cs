@@ -23,9 +23,9 @@ namespace WeatherCollectorDesktop
             InitializeComponent();
         }
 
-        protected override void OnLoad(EventArgs e)
+        protected override async void OnLoad(EventArgs e)
         {
-            DatabaseCheck();
+            await DatabaseCheck();
             lblCurTime.Text = DateTime.Now.ToShortTimeString(); //Set the current time label to the initial value 
             lblCountDown.Text = secondsToWait.ToString(); //Set the count down label to the initial value 
             lblRunTimes.Text = runTimes.ToString(); //Set the status label to the initial value 
