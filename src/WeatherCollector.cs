@@ -190,20 +190,6 @@ namespace WeatherCollectorDesktop
             return content;
         }
 
-        public class Weather
-        {
-            public int Id { get; set; }
-            public string Main { get; set; }
-            public string Description { get; set; }
-            public string Icon { get; set; }
-
-        }
-
-        public class Rootobject
-        {
-            public Weather[] Weather { get; set; }
-        }
-
         private void ProcessWeatherJson(int runID, Guid runGuid, string content)
         {
             txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Saving received values to the database" + Environment.NewLine);
@@ -212,7 +198,7 @@ namespace WeatherCollectorDesktop
             dynamic forecastJson = GetDeserializedData(content);
 
             //Convert the content string into JsonObjects
-            var jsonObj = JsonConvert.DeserializeObject<Rootobject>(content);
+            var jsonObj = JsonConvert.DeserializeObject<RootObject>(content);
 
             var weatherObj = jsonObj.Weather;
 
@@ -618,7 +604,6 @@ namespace WeatherCollectorDesktop
 
             btn_Start.Visible = true;
             btn_Stop.Visible = false;
-
         }
 
         private void BtnExportLogs_Click(object sender, EventArgs e)
@@ -647,7 +632,6 @@ namespace WeatherCollectorDesktop
                 txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
                 txtLogging.ForeColor = System.Drawing.Color.Red;
             }
-
         }
 
         private void WeatherCollector_Resize(object sender, EventArgs e)

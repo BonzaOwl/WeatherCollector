@@ -72,6 +72,8 @@
     <Compile Include="class\ConstructRequestUrl.cs" />
     <Compile Include="class\FromUnixTime.cs" />
     <Compile Include="class\GetIconID.cs" />
+    <Compile Include="class\RootObject.cs" />
+    <Compile Include="class\Weather.cs" />
     <Compile Include="history.cs">
       <SubType>Form</SubType>
     </Compile>
