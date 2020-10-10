@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WeatherCollectorDesktop
@@ -87,17 +88,16 @@ namespace WeatherCollectorDesktop
         private void Timer2_Tick(object sender, EventArgs e)
         {
             lblCurTime.Text = DateTime.Now.ToLongTimeString();
-
         }
 
-        private void DatabaseCheck()
+        private async Task DatabaseCheck()
         {
             //Connect to the database and check if the stored procedure exists, if we run into an error database doesn't exist or is not accessible.
             var sqldb_connection = ConnectionStringBuilder.ConnectionString();
             using (SqlConnection con = new SqlConnection(sqldb_connection))
                 try
                 {
-                    con.Open();
+                    await con.OpenAsync();
 
                     SqlCommand SaveRawWeatherData = new SqlCommand("[dbo].[SystemAlive]", con)
                     {
@@ -110,7 +110,7 @@ namespace WeatherCollectorDesktop
                     SaveRawWeatherData.Parameters.Add("@rowCnt", SqlDbType.Int);
                     SaveRawWeatherData.Parameters["@rowCnt"].Direction = ParameterDirection.Output;                    
 
-                    SaveRawWeatherData.ExecuteNonQuery();
+                    await SaveRawWeatherData.ExecuteNonQueryAsync();
 
                     int value = (int)SaveRawWeatherData.Parameters["@rowCnt"].Value;
                     int retunvalue = value;
@@ -118,7 +118,6 @@ namespace WeatherCollectorDesktop
                     if(retunvalue == 0)                    
                     {
                         lblDatabaseExist.Visible = true;
-                        
                     }                    
                 }
 
