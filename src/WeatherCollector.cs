@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WeatherCollectorDesktop
@@ -22,9 +23,9 @@ namespace WeatherCollectorDesktop
             InitializeComponent();
         }
 
-        protected override void OnLoad(EventArgs e)
+        protected override async void OnLoad(EventArgs e)
         {
-            DatabaseCheck();
+            await DatabaseCheck();
             lblCurTime.Text = DateTime.Now.ToShortTimeString(); //Set the current time label to the initial value 
             lblCountDown.Text = secondsToWait.ToString(); //Set the count down label to the initial value 
             lblRunTimes.Text = runTimes.ToString(); //Set the status label to the initial value 
@@ -87,17 +88,16 @@ namespace WeatherCollectorDesktop
         private void Timer2_Tick(object sender, EventArgs e)
         {
             lblCurTime.Text = DateTime.Now.ToLongTimeString();
-
         }
 
-        private void DatabaseCheck()
+        private async Task DatabaseCheck()
         {
             //Connect to the database and check if the stored procedure exists, if we run into an error database doesn't exist or is not accessible.
             var sqldb_connection = ConnectionStringBuilder.ConnectionString();
             using (SqlConnection con = new SqlConnection(sqldb_connection))
                 try
                 {
-                    con.Open();
+                    await con.OpenAsync();
 
                     SqlCommand SaveRawWeatherData = new SqlCommand("[dbo].[SystemAlive]", con)
                     {
@@ -110,7 +110,7 @@ namespace WeatherCollectorDesktop
                     SaveRawWeatherData.Parameters.Add("@rowCnt", SqlDbType.Int);
                     SaveRawWeatherData.Parameters["@rowCnt"].Direction = ParameterDirection.Output;                    
 
-                    SaveRawWeatherData.ExecuteNonQuery();
+                    await SaveRawWeatherData.ExecuteNonQueryAsync();
 
                     int value = (int)SaveRawWeatherData.Parameters["@rowCnt"].Value;
                     int retunvalue = value;
@@ -118,7 +118,6 @@ namespace WeatherCollectorDesktop
                     if(retunvalue == 0)                    
                     {
                         lblDatabaseExist.Visible = true;
-                        
                     }                    
                 }
 
@@ -191,20 +190,6 @@ namespace WeatherCollectorDesktop
             return content;
         }
 
-        public class Weather
-        {
-            public int Id { get; set; }
-            public string Main { get; set; }
-            public string Description { get; set; }
-            public string Icon { get; set; }
-
-        }
-
-        public class Rootobject
-        {
-            public Weather[] Weather { get; set; }
-        }
-
         private void ProcessWeatherJson(int runID, Guid runGuid, string content)
         {
             txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Saving received values to the database" + Environment.NewLine);
@@ -213,7 +198,7 @@ namespace WeatherCollectorDesktop
             dynamic forecastJson = GetDeserializedData(content);
 
             //Convert the content string into JsonObjects
-            var jsonObj = JsonConvert.DeserializeObject<Rootobject>(content);
+            var jsonObj = JsonConvert.DeserializeObject<RootObject>(content);
 
             var weatherObj = jsonObj.Weather;
 
@@ -619,7 +604,6 @@ namespace WeatherCollectorDesktop
 
             btn_Start.Visible = true;
             btn_Stop.Visible = false;
-
         }
 
         private void BtnExportLogs_Click(object sender, EventArgs e)
@@ -648,7 +632,6 @@ namespace WeatherCollectorDesktop
                 txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
                 txtLogging.ForeColor = System.Drawing.Color.Red;
             }
-
         }
 
         private void WeatherCollector_Resize(object sender, EventArgs e)
