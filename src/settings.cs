@@ -22,7 +22,6 @@ namespace WeatherCollectorDesktop
             txtDatabaseName.Text = Properties.Settings.Default.DataBaseName;
             txtRefresh.Text = Properties.Settings.Default.RefreshInterval.ToString();
             txtWeatherAPI.Text = Properties.Settings.Default.weatherAPIKey;            
-            lblLang.Text = Properties.Settings.Default.weatherUnits;
             txtLat.Text = Properties.Settings.Default.weatherLat;
             txtLong.Text = Properties.Settings.Default.weatherLong;
             txtDatabaseUsername.Text = Properties.Settings.Default.DatabaseUser;
@@ -31,6 +30,45 @@ namespace WeatherCollectorDesktop
             txtLogFile.Text = Properties.Settings.Default.LogFile;
             txtLogRoot.Text = Properties.Settings.Default.LogPath;
 
+            GetSetLanguage();
+            GetSetUnit();
+        }
+
+        //Get the language that the user has set to sent to the api and ensure that the check box is selected
+        private void GetSetLanguage()
+        {
+            //Current language
+            string curLang = Properties.Settings.Default.weatherLanguage;
+
+            //Get all the items in the CheckBoxList
+            for (int i = 0; i < chkListLang.Items.Count; i++)
+            {
+                //Get the currect item from the loop
+                var chkItem = chkListLang.Items[i].ToString();
+
+                //If the currentlanguage matches the items from the loop
+                if (curLang == chkItem)
+                {
+                    //Get the language checkbox to checked
+                    chkListLang.SetItemChecked(i,true);            
+                }
+            }
+        }
+
+        //Get the unit that the user has set to send to the api and ensure that the check box is selected
+        private void GetSetUnit()
+        {
+            string curUnit = Properties.Settings.Default.weatherUnits;
+
+            for (int i = 0; i < chkListUnits.Items.Count; i++)
+            {
+                var chkItem = chkListUnits.Items[i].ToString();
+
+                if (curUnit == chkItem)
+                {
+                    chkListUnits.SetItemChecked(i, true);
+                }
+            }
         }
 
         private void SaveSettings()
@@ -126,6 +164,11 @@ namespace WeatherCollectorDesktop
         private void LnkLbl_Location_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.latlong.net");
+        }
+
+        private void settings_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

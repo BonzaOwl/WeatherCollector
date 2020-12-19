@@ -44,10 +44,11 @@
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.BtnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LblLanguageHead = new System.Windows.Forms.Label();
+            this.LblUnitsHead = new System.Windows.Forms.Label();
             this.LnkMoreInfo = new System.Windows.Forms.LinkLabel();
             this.chkListLang = new System.Windows.Forms.CheckedListBox();
             this.lnkLbl_Location = new System.Windows.Forms.LinkLabel();
-            this.lblLang = new System.Windows.Forms.Label();
             this.chkListUnits = new System.Windows.Forms.CheckedListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtLat = new System.Windows.Forms.TextBox();
@@ -64,8 +65,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblRefreshInfo = new System.Windows.Forms.Label();
-            this.LblUnitsHead = new System.Windows.Forms.Label();
-            this.LblLanguageHead = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -201,7 +200,6 @@
             this.groupBox1.Controls.Add(this.LnkMoreInfo);
             this.groupBox1.Controls.Add(this.chkListLang);
             this.groupBox1.Controls.Add(this.lnkLbl_Location);
-            this.groupBox1.Controls.Add(this.lblLang);
             this.groupBox1.Controls.Add(this.chkListUnits);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtLat);
@@ -215,6 +213,26 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "API Settings";
+            // 
+            // LblLanguageHead
+            // 
+            this.LblLanguageHead.AutoSize = true;
+            this.LblLanguageHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblLanguageHead.Location = new System.Drawing.Point(162, 162);
+            this.LblLanguageHead.Name = "LblLanguageHead";
+            this.LblLanguageHead.Size = new System.Drawing.Size(63, 13);
+            this.LblLanguageHead.TabIndex = 23;
+            this.LblLanguageHead.Text = "Language";
+            // 
+            // LblUnitsHead
+            // 
+            this.LblUnitsHead.AutoSize = true;
+            this.LblUnitsHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUnitsHead.Location = new System.Drawing.Point(19, 162);
+            this.LblUnitsHead.Name = "LblUnitsHead";
+            this.LblUnitsHead.Size = new System.Drawing.Size(36, 13);
+            this.LblUnitsHead.TabIndex = 22;
+            this.LblUnitsHead.Text = "Units";
             // 
             // LnkMoreInfo
             // 
@@ -296,19 +314,11 @@
             this.lnkLbl_Location.Text = "Latitude and Longitude Finder";
             this.lnkLbl_Location.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLbl_Location_LinkClicked);
             // 
-            // lblLang
-            // 
-            this.lblLang.AutoSize = true;
-            this.lblLang.Location = new System.Drawing.Point(19, 283);
-            this.lblLang.Name = "lblLang";
-            this.lblLang.Size = new System.Drawing.Size(35, 13);
-            this.lblLang.TabIndex = 18;
-            this.lblLang.Text = "label9";
-            // 
             // chkListUnits
             // 
             this.chkListUnits.FormattingEnabled = true;
             this.chkListUnits.Items.AddRange(new object[] {
+            "standard",
             "metric",
             "imperial"});
             this.chkListUnits.Location = new System.Drawing.Point(20, 181);
@@ -463,26 +473,6 @@
             this.lblRefreshInfo.TabIndex = 8;
             this.lblRefreshInfo.Text = "milliseconds";
             // 
-            // LblUnitsHead
-            // 
-            this.LblUnitsHead.AutoSize = true;
-            this.LblUnitsHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUnitsHead.Location = new System.Drawing.Point(19, 162);
-            this.LblUnitsHead.Name = "LblUnitsHead";
-            this.LblUnitsHead.Size = new System.Drawing.Size(36, 13);
-            this.LblUnitsHead.TabIndex = 22;
-            this.LblUnitsHead.Text = "Units";
-            // 
-            // LblLanguageHead
-            // 
-            this.LblLanguageHead.AutoSize = true;
-            this.LblLanguageHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblLanguageHead.Location = new System.Drawing.Point(162, 162);
-            this.LblLanguageHead.Name = "LblLanguageHead";
-            this.LblLanguageHead.Size = new System.Drawing.Size(63, 13);
-            this.LblLanguageHead.TabIndex = 23;
-            this.LblLanguageHead.Text = "Language";
-            // 
             // settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,6 +488,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "settings";
             this.Text = "Weather Collector - Settings";
+            this.Load += new System.EventHandler(this.settings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -534,7 +525,6 @@
         private System.Windows.Forms.TextBox txtLong;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckedListBox chkListUnits;
-        private System.Windows.Forms.Label lblLang;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLogDirectory;

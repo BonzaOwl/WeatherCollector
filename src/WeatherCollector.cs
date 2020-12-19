@@ -25,7 +25,7 @@ namespace WeatherCollectorDesktop
 
         protected override async void OnLoad(EventArgs e)
         {
-            await DatabaseCheck();
+            await DatabaseCheck();            
             lblCurTime.Text = DateTime.Now.ToShortTimeString(); //Set the current time label to the initial value 
             lblCountDown.Text = secondsToWait.ToString(); //Set the count down label to the initial value 
             lblRunTimes.Text = runTimes.ToString(); //Set the status label to the initial value 
@@ -55,6 +55,8 @@ namespace WeatherCollectorDesktop
                 runTimes += 1; //Increment the amount of times this has run by 1
                 lblRunTimes.Text = runTimes.ToString(); //Set the total number or run times to the label
                 lblStatus.Text = "Running"; //If the start button has been clicked, we are running.
+
+                trayIcon.BalloonTipText = "Weather Collection In Progress";
 
                 appRunning = 1;
 
@@ -112,6 +114,8 @@ namespace WeatherCollectorDesktop
 
                     await SaveRawWeatherData.ExecuteNonQueryAsync();
 
+                    lblDatabaseExist.Text = "Attempting to connect to the database";
+
                     int value = (int)SaveRawWeatherData.Parameters["@rowCnt"].Value;
                     int retunvalue = value;
 
@@ -123,9 +127,9 @@ namespace WeatherCollectorDesktop
 
                 catch (Exception ex)
                 {
-                    txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " " +  ex.Message.ToString() + Environment.NewLine);
+                    string error = ex.Message.ToString();
                     lblDatabaseExist.Visible = true;
-                    lblDatabaseExist.Text = "DATABASE DOESN'T EXIST";
+                    lblDatabaseExist.Text = "Database connection failed";
                     lblExecutions.Visible = false;
                     lblRunTimes.Visible = false; 
                     btn_Start.Visible = false; //Can't collect data as we have nowhere to save it, hide the button
@@ -143,7 +147,7 @@ namespace WeatherCollectorDesktop
             string cordsLong = Properties.Settings.Default.weatherLong;
             string cordsLat = Properties.Settings.Default.weatherLat;
             string units = Properties.Settings.Default.weatherUnits;
-            string language = Properties.Settings.Default.weatherLang;
+            string language = Properties.Settings.Default.weatherLanguage;
 
             if (cordsLong == null || cordsLat == null)
             {
@@ -233,7 +237,7 @@ namespace WeatherCollectorDesktop
             float? latitude = forecastJson.lat;
 
             //Get the forecasted time from the JSON
-            var time = forecastJson.dt;
+            long time = forecastJson.current.dt;
             DateTime runTime = FromUnixTime.Convert(time);
                         
             string timeZone = forecastJson.timezone;
@@ -249,7 +253,8 @@ namespace WeatherCollectorDesktop
             long sunset = forecastJson.current.sunset;
             DateTime dtSunset = FromUnixTime.Convert(sunset);
 
-            decimal? rain = forecastJson.current.rain; 
+            decimal? rain = forecastJson["current"]["rain"]["1h"];
+            //decimal? rain = 1.5M;
 
             decimal? snow = forecastJson.current.snow;         
 
@@ -293,15 +298,15 @@ namespace WeatherCollectorDesktop
                         CommandType = CommandType.StoredProcedure
                     };
 
-                    SaveRunData.Parameters.Add("@units", SqlDbType.VarChar, 10);
-                    if (units != null)
-                    {
-                        SaveRunData.Parameters["@units"].Value = units;
-                    }
-                    else
-                    {
-                        SaveRunData.Parameters["@units"].Value = DBNull.Value;
-                    }
+                    //SaveRunData.Parameters.Add("@units", SqlDbType.VarChar, 10);
+                    //if (units != null)
+                    //{
+                    //    SaveRunData.Parameters["@units"].Value = units;
+                    //}
+                    //else
+                    //{
+                    //    SaveRunData.Parameters["@units"].Value = DBNull.Value;
+                    //}
 
                     SaveRunData.Parameters.Add("@runID", SqlDbType.Int);
                     SaveRunData.Parameters["@runID"].Value = runID;
@@ -435,28 +440,21 @@ namespace WeatherCollectorDesktop
 
                     SaveWeatherData.Parameters.Add("@runGuid", SqlDbType.UniqueIdentifier);
                     SaveWeatherData.Parameters["@runGuid"].Value = runGuid;
+                    
+                    SaveWeatherData.Parameters.Add("@rain", SqlDbType.Decimal);
+                    SaveWeatherData.Parameters["@rain"].Value = rain;
+                                       
 
-                    if (rain != null)
-                    {
-                        SaveWeatherData.Parameters.Add("@rain", SqlDbType.Decimal);
-                        SaveWeatherData.Parameters["@rain"].Value = rain;
-                    }
-                    else
-                    {
-                        SaveWeatherData.Parameters.Add("@rain", SqlDbType.Decimal);
-                        SaveWeatherData.Parameters["@rain"].Value = DBNull.Value;
-                    }
-
-                    if(snow != null)
-                    {
-                        SaveWeatherData.Parameters.Add("@snow", SqlDbType.Decimal);
-                        SaveWeatherData.Parameters["@snow"].Value = snow;
-                    }
-                    else
-                    {
-                        SaveWeatherData.Parameters.Add("@snow", SqlDbType.Decimal);
-                        SaveWeatherData.Parameters["@snow"].Value = DBNull.Value;
-                    }                    
+                    //if(snow != null)
+                    //{
+                    //    SaveWeatherData.Parameters.Add("@snow", SqlDbType.Decimal);
+                    //    SaveWeatherData.Parameters["@snow"].Value = snow;
+                    //}
+                    //else
+                    //{
+                    //    SaveWeatherData.Parameters.Add("@snow", SqlDbType.Decimal);
+                    //    SaveWeatherData.Parameters["@snow"].Value = DBNull.Value;
+                    //}                    
 
                     if (temperature != null)
                     {
@@ -549,7 +547,8 @@ namespace WeatherCollectorDesktop
                     SaveWeatherData.Parameters.Add("@cloudCover", SqlDbType.Decimal);
                     if (cloudCover != null)
                     {
-                        SaveWeatherData.Parameters["@cloudCover"].Value = cloudCover;
+                        //SaveWeatherData.Parameters["@cloudCover"].Value = cloudCover + 'M';
+                        SaveWeatherData.Parameters["@cloudCover"].Value = DBNull.Value;
                     }
                     else
                     {
@@ -568,7 +567,8 @@ namespace WeatherCollectorDesktop
                     SaveWeatherData.Parameters.Add("@visibility", SqlDbType.Decimal);
                     if (visibility != null)
                     {
-                        SaveWeatherData.Parameters["@visibility"].Value = visibility;
+                        //SaveWeatherData.Parameters["@visibility"].Value = visibility;
+                        SaveWeatherData.Parameters["@visibility"].Value = DBNull.Value;
                     } else
                     {
                         SaveWeatherData.Parameters["@visibility"].Value = DBNull.Value;
@@ -599,6 +599,8 @@ namespace WeatherCollectorDesktop
             timer1.Stop();
             txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Application Stopped" + Environment.NewLine);
             lblStatus.Text = "Stopped";
+
+            trayIcon.BalloonTipText = string.Empty;
 
             appRunning = 0;
 
@@ -666,6 +668,11 @@ namespace WeatherCollectorDesktop
         private void HelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = System.Diagnostics.Process.Start("https://github.com/BonzaOwl/WeatherCollector");
+        }
+
+        private void WeatherCollector_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
