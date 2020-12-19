@@ -11,9 +11,9 @@
     [dewPoint]            DECIMAL (4, 2)   NULL,
     [humidity]            DECIMAL (4, 2)   NULL,
     [pressure]            DECIMAL (6, 2)   NULL,
-    [cloudCover]          DECIMAL (4, 2)   NULL,
+    [cloudCover]          DECIMAL (5, 2)   NULL,
     [uvIndex]             DECIMAL (4, 2)   NULL,
-    [visibility]          DECIMAL (4, 2)   NULL,
+    [visibility]          DECIMAL (5, 2)   NULL,
     [ozone]               DECIMAL (5, 2)   NULL, 
     CONSTRAINT [PK_WeatherData_runID] PRIMARY KEY ([runID])
 );
