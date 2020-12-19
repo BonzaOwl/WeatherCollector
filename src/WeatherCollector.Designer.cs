@@ -173,11 +173,11 @@
             this.lblDatabaseExist.AutoSize = true;
             this.lblDatabaseExist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDatabaseExist.ForeColor = System.Drawing.Color.Red;
-            this.lblDatabaseExist.Location = new System.Drawing.Point(156, 102);
+            this.lblDatabaseExist.Location = new System.Drawing.Point(9, 306);
             this.lblDatabaseExist.Name = "lblDatabaseExist";
-            this.lblDatabaseExist.Size = new System.Drawing.Size(170, 13);
+            this.lblDatabaseExist.Size = new System.Drawing.Size(204, 13);
             this.lblDatabaseExist.TabIndex = 15;
-            this.lblDatabaseExist.Text = "DATABASE DOESN\'T EXIST";
+            this.lblDatabaseExist.Text = "DATABASE CONNECTION FAILED";
             this.lblDatabaseExist.Visible = false;
             // 
             // trayIcon
@@ -197,28 +197,28 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(469, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(469, 27);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(70, 23);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(65, 23);
             this.historyToolStripMenuItem.Text = "History";
             this.historyToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(49, 23);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
@@ -256,6 +256,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "WeatherCollector";
             this.Text = "Weather Collector";
+            this.Load += new System.EventHandler(this.WeatherCollector_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
