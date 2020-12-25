@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -181,5 +183,51 @@ namespace WeatherCollectorDesktop
             }
         }
 
-    }
+        private void btnClearDatabase_Click(object sender, EventArgs e)
+        {
+            if(ConfirmDatabaseClear() == true)
+            {
+                ClearDatabase();
+            }
+        }
+
+        public static bool ConfirmDatabaseClear()
+        {
+            const string message = "Are you sure you want to clear down the database? This isn't reversable unless you have backups";
+            const string caption = "Confirm Database Cleardown";
+
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void ClearDatabase()
+        {
+            var sqldb_connection = ConnectionStringBuilder.ConnectionString();
+            using (SqlConnection con = new SqlConnection(sqldb_connection))
+                try
+                {
+                    con.Open();
+
+                    SqlCommand GetRunIDCommand = new SqlCommand("[dbo].[ClearDownDatabase]", con)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    GetRunIDCommand.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    _ = ex.Message.ToString();
+                }            
+        }
+    }    
 }

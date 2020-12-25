@@ -63,10 +63,13 @@
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblRefreshInfo = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnClearDatabase = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtServerName
@@ -381,7 +384,7 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtLogRoot);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(374, 27);
+            this.groupBox3.Location = new System.Drawing.Point(374, 170);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(310, 137);
             this.groupBox3.TabIndex = 16;
@@ -436,7 +439,7 @@
             this.groupBox4.Controls.Add(this.lblRefreshInfo);
             this.groupBox4.Controls.Add(this.txtRefresh);
             this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Location = new System.Drawing.Point(374, 170);
+            this.groupBox4.Location = new System.Drawing.Point(374, 322);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(310, 99);
             this.groupBox4.TabIndex = 18;
@@ -452,11 +455,35 @@
             this.lblRefreshInfo.TabIndex = 8;
             this.lblRefreshInfo.Text = "milliseconds";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnClearDatabase);
+            this.groupBox5.Location = new System.Drawing.Point(374, 27);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(310, 137);
+            this.groupBox5.TabIndex = 19;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Database Maintenence";
+            // 
+            // btnClearDatabase
+            // 
+            this.btnClearDatabase.BackColor = System.Drawing.Color.Red;
+            this.btnClearDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearDatabase.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnClearDatabase.Location = new System.Drawing.Point(54, 43);
+            this.btnClearDatabase.Name = "btnClearDatabase";
+            this.btnClearDatabase.Size = new System.Drawing.Size(212, 50);
+            this.btnClearDatabase.TabIndex = 0;
+            this.btnClearDatabase.Text = "Clear Down Database";
+            this.btnClearDatabase.UseVisualStyleBackColor = false;
+            this.btnClearDatabase.Click += new System.EventHandler(this.btnClearDatabase_Click);
+            // 
             // settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 506);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox3);
@@ -476,6 +503,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,5 +545,7 @@
         private System.Windows.Forms.CheckedListBox chkListLang;
         private System.Windows.Forms.Label LblLanguageHead;
         private System.Windows.Forms.Label LblUnitsHead;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnClearDatabase;
     }
 }
