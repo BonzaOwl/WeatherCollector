@@ -48,9 +48,8 @@ namespace WeatherCollectorDesktop
                     gvHistory.DataSource = ds.Tables[0];
 
                     gvHistory.Columns[0].Visible = false;
-                    gvHistory.Columns[1].Visible = false; //GUID
-                    gvHistory.Columns[2].Visible = false; //Invalid
-                    gvHistory.Columns[3].Visible = false; //Delete
+                    gvHistory.Columns[1].Visible = false; //Invalid
+                    gvHistory.Columns[2].Visible = false; //Delete
 
                     //close connection
                     conn.Close();
@@ -110,12 +109,12 @@ namespace WeatherCollectorDesktop
 
             if(gvHistory.CurrentRow.Index != -1)
             {
-                if (Convert.ToBoolean(gvHistory.CurrentRow.Cells[2].Value) == true)
+                if (Convert.ToBoolean(gvHistory.CurrentRow.Cells[1].Value) == true)
                 {
                     chkInvalid.Checked = true;
                 }
 
-                if (Convert.ToBoolean(gvHistory.CurrentRow.Cells[3].Value) == true)
+                if (Convert.ToBoolean(gvHistory.CurrentRow.Cells[2].Value) == true)
                 {
                     chkDelete.Checked = true;
                 }
