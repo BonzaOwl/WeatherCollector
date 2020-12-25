@@ -86,5 +86,6 @@
     <Build Include="dbo\Stored Procedures\SaveRunData.sql" />
     <Build Include="dbo\Stored Procedures\getHistory.sql" />
     <Build Include="Security\Ref.sql" />
+    <Build Include="dbo\Stored Procedures\GetCurrentData.sql" />
   </ItemGroup>
 </Project>
