@@ -50,19 +50,19 @@ namespace WeatherCollectorDesktop
                 }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
             txtCurrentData.Text = string.Empty;
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             
             new WeatherCollector().Show();
             Hide();
         }
 
-        private void btnCopy_Click(object sender, EventArgs e)
+        private void BtnCopy_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(txtCurrentData.Text);
         }

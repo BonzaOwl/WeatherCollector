@@ -166,7 +166,7 @@ namespace WeatherCollectorDesktop
             Process.Start("https://www.latlong.net");
         }
 
-        private void settings_Load(object sender, EventArgs e)
+        private void Settings_Load(object sender, EventArgs e)
         {
 
         }

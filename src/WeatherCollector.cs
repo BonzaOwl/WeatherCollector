@@ -68,7 +68,7 @@ namespace WeatherCollectorDesktop
             }
         }
 
-        private void btnRunNow_Click(object sender, EventArgs e)
+        private void BtnRunNow_Click(object sender, EventArgs e)
         {
             timer1.Stop();
             timer1.Start();
@@ -617,71 +617,81 @@ namespace WeatherCollectorDesktop
 
         private void BtnExportLogs_Click(object sender, EventArgs e)
         {
-            string fileRoot = Properties.Settings.Default.LogPath;
+            int logLength = txtLogging.Text.Length;
 
-            if(fileRoot.Length == 0)
+            if (logLength != 0)
             {
-                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " File Root Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
-                txtLogging.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
 
-            string fileDir = Properties.Settings.Default.LogDirectory;
+                string fileRoot = Properties.Settings.Default.LogPath;
 
-            if (fileDir.Length == 0)
-            {
-                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Folder Name Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
-                txtLogging.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-
-            string fileName = "weathercollector" + "-" + DateTime.Now.ToString("ddMMyyyyhhmmss") + ".log";
-
-            if (fileName.Length == 0)
-            {
-                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Filename Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
-                txtLogging.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-
-            string filePath = fileRoot + "\\" + fileDir + "\\" + fileName;
-
-            try
-            {
-                if (Directory.Exists(fileRoot + fileDir))
+                if (fileRoot.Length == 0)
                 {
-                    File.WriteAllText(filePath, txtLogging.Text);
-                    MessageBox.Show("Logs successfully exported", "Logs Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Logs successfully exported." + Environment.NewLine);
-                    txtLogging.ForeColor = System.Drawing.Color.Green;
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " File Root Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
+                    txtLogging.ForeColor = System.Drawing.Color.Red;
+                    return;
                 }
-                else
+
+                string fileDir = Properties.Settings.Default.LogDirectory;
+
+                if (fileDir.Length == 0)
                 {
-                    try
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Folder Name Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
+                    txtLogging.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                string fileName = "weathercollector" + "-" + DateTime.Now.ToString("ddMMyyyyhhmmss") + ".log";
+
+                if (fileName.Length == 0)
+                {
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Filename Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
+                    txtLogging.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                string filePath = fileRoot + "\\" + fileDir + "\\" + fileName;
+
+                try
+                {
+                    if (Directory.Exists(fileRoot + fileDir))
                     {
-                        Directory.CreateDirectory(fileRoot + fileDir);
-
-                        txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Directory doesn't exist." + Environment.NewLine);
-                        txtLogging.ForeColor = System.Drawing.Color.Red;
-
-                        txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Directory sucesssfully created." + Environment.NewLine);
-                        txtLogging.ForeColor = System.Drawing.Color.Green;
-
                         File.WriteAllText(filePath, txtLogging.Text);
-                        MessageBox.Show("Logs successfully exported", "Logs Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);                        
+                        MessageBox.Show("Logs successfully exported", "Logs Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Logs successfully exported." + Environment.NewLine);
+                        txtLogging.ForeColor = System.Drawing.Color.Green;
                     }
-                    catch
+                    else
                     {
-                        txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Error exporting logs to file." + Environment.NewLine);
-                        txtLogging.ForeColor = System.Drawing.Color.Red;
+                        try
+                        {
+                            Directory.CreateDirectory(fileRoot + fileDir);
+
+                            txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Directory doesn't exist." + Environment.NewLine);
+                            txtLogging.ForeColor = System.Drawing.Color.Red;
+
+                            txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Directory sucesssfully created." + Environment.NewLine);
+                            txtLogging.ForeColor = System.Drawing.Color.Green;
+
+                            File.WriteAllText(filePath, txtLogging.Text);
+                            MessageBox.Show("Logs successfully exported", "Logs Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        catch
+                        {
+                            txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Error exporting logs to file." + Environment.NewLine);
+                            txtLogging.ForeColor = System.Drawing.Color.Red;
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
+                catch (Exception ex)
+                {
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
+                    txtLogging.ForeColor = System.Drawing.Color.Red;
+                }
+            } else
             {
-                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " " + ex.Message.ToString() + Environment.NewLine);
+                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Currently no log data to export." + Environment.NewLine);
                 txtLogging.ForeColor = System.Drawing.Color.Red;
             }
         }
@@ -736,7 +746,7 @@ namespace WeatherCollectorDesktop
             }
         }
 
-        private void btnLatestJSON_Click(object sender, EventArgs e)
+        private void BtnLatestJSON_Click(object sender, EventArgs e)
         {
             new CurrentData().Show();
             Hide();
