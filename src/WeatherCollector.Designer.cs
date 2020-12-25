@@ -54,6 +54,11 @@
             this.txtRunIDCnt = new System.Windows.Forms.Label();
             this.btnRunNow = new System.Windows.Forms.Button();
             this.btnLatestJSON = new System.Windows.Forms.Button();
+            this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -264,7 +269,7 @@
             this.btnRunNow.TabIndex = 19;
             this.btnRunNow.Text = "Run Now";
             this.btnRunNow.UseVisualStyleBackColor = true;
-            this.btnRunNow.Click += new System.EventHandler(this.btnRunNow_Click);
+            this.btnRunNow.Click += new System.EventHandler(this.BtnRunNow_Click);
             // 
             // btnLatestJSON
             // 
@@ -274,7 +279,43 @@
             this.btnLatestJSON.TabIndex = 20;
             this.btnLatestJSON.Text = "Latest JSON";
             this.btnLatestJSON.UseVisualStyleBackColor = true;
-            this.btnLatestJSON.Click += new System.EventHandler(this.btnLatestJSON_Click);
+            this.btnLatestJSON.Click += new System.EventHandler(this.BtnLatestJSON_Click);
+            // 
+            // BottomToolStripPanel
+            // 
+            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
+            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // TopToolStripPanel
+            // 
+            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopToolStripPanel.Name = "TopToolStripPanel";
+            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.RightToolStripPanel.Name = "RightToolStripPanel";
+            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
+            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // ContentPanel
+            // 
+            this.ContentPanel.Size = new System.Drawing.Size(150, 24);
             // 
             // WeatherCollector
             // 
@@ -338,6 +379,11 @@
         private System.Windows.Forms.Label txtRunIDCnt;
         private System.Windows.Forms.Button btnRunNow;
         private System.Windows.Forms.Button btnLatestJSON;
+        private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
+        private System.Windows.Forms.ToolStripContentPanel ContentPanel;
     }
 }
 
