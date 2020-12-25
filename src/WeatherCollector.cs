@@ -154,29 +154,56 @@ namespace WeatherCollectorDesktop
             txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Starting Application with guid " + runGuid + Environment.NewLine);
 
             string apiKey = Properties.Settings.Default.weatherAPIKey;
-            string cordsLong = Properties.Settings.Default.weatherLong;
-            string cordsLat = Properties.Settings.Default.weatherLat;
-            string units = Properties.Settings.Default.weatherUnits;
-            string language = Properties.Settings.Default.weatherLanguage;
 
-            if (cordsLong == null || cordsLat == null)
+            if(apiKey.Length == 0)
             {
-                MessageBox.Show("Either the logitude or latitude has not been defined", "No location Defined", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " It looks like the API Key has not been specified in the settings" + Environment.NewLine);
                 return;
             }
-            else
+
+            string cordsLong = Properties.Settings.Default.weatherLong;
+
+            if(cordsLong == null)
             {
-                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Fetching URL based on application settings" + Environment.NewLine);
-                string forecastUrl = ConstructRequestUrl.ForecastUrl(apiKey, cordsLat, cordsLong, units, language);
-
-                int runID = GetRunID.LatestRunID();
-
-                txtRunIDCnt.Text = runID.ToString();
-
-                string content = GetWeatherData(runID, runGuid, forecastUrl);
-
-                ProcessWeatherJson(runID, runGuid, content);
+                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Either the logitude or latitude has not been defined. No Location Defined " + Environment.NewLine);                
+                return;
             }
+
+            string cordsLat = Properties.Settings.Default.weatherLat;
+
+            if(cordsLat == null)
+            {
+                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Either the logitude or latitude has not been defined. No Location Defined " + Environment.NewLine);                
+                return;
+            }
+
+            string units = Properties.Settings.Default.weatherUnits;
+
+            if(units.Length == 0)
+            {
+                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " No units have been specified, defaulting to metric " + Environment.NewLine);
+                units = "metric";
+            }
+
+            string language = Properties.Settings.Default.weatherLanguage;
+
+            if(language == null)
+            {
+                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " The language that you want the results returned in has not been specified, defaulting to en " + Environment.NewLine);
+                language = "en";
+            }            
+            
+            txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Fetching URL based on application settings" + Environment.NewLine);
+            string forecastUrl = ConstructRequestUrl.ForecastUrl(apiKey, cordsLat, cordsLong, units, language);
+
+            int runID = GetRunID.LatestRunID();
+
+            txtRunIDCnt.Text = runID.ToString();
+
+            string content = GetWeatherData(runID, runGuid, forecastUrl);
+
+            ProcessWeatherJson(runID, runGuid, content);
+            
         }
 
         private string GetWeatherData(int runID, Guid runGuid, string forecastUrl)
@@ -266,33 +293,99 @@ namespace WeatherCollectorDesktop
             if (forecastJson["current"]["rain"] != null)
             {
                 rain = forecastJson["rain"]["1h"];
-            }                   
+            }
 
-            decimal? snow = forecastJson.current.snow;         
+            decimal? snow = null;
 
-            decimal? temperature = forecastJson.current.temp;
+            if (forecastJson.current.snow != null)
+            {
+                snow = forecastJson.current.snow;
+            }            
 
-            decimal? apparentTemperature = forecastJson.current.feels_like;
+
+            decimal? temperature = null;
+
+            if (forecastJson.current.temp != null)
+            {
+                temperature = forecastJson.current.temp;
+            }
+
+            decimal? apparentTemperature = null;
+
+            if(forecastJson.current.feels_like != null)
+            {
+                apparentTemperature = forecastJson.current.feels_like;
+            }
 
             decimal? windSpeed = forecastJson.current.wind_speed;
 
+            if(forecastJson.current.wind_speed != null)
+            {
+                windSpeed = forecastJson.current.wind_speed;
+            }
+
             decimal? windGust = forecastJson.current.wind_gust;
 
-            decimal? windBearing = forecastJson.current.wind_deg; 
+            if(forecastJson.current.wind_gust != null)
+            {
+                windGust = forecastJson.current.wind_gust;
+            }
 
-            decimal? dewPoint = forecastJson.current.dew_point;
+            decimal? windBearing = null;
 
-            decimal? humidity = forecastJson.current.humidity; 
+            if(forecastJson.current.wind_deg != null)
+            {
+                windBearing = forecastJson.current.wind_deg;
+            }
 
-            decimal? pressure = forecastJson.current.pressure; 
+            decimal? dewPoint = null;
+            
+            if(forecastJson.current.dew_point != null)
+            {
+                dewPoint = forecastJson.current.dew_point;
+            }
 
-            decimal? cloudCover = forecastJson.current.clouds; 
+            decimal? humidity = null;
 
-            decimal? uvIndex = forecastJson.current.uvi;
+            if(forecastJson.current.humidity != null)
+            {
+                humidity = forecastJson.current.humidity;
+            }
 
-            decimal? visibility = forecastJson.current.visibility;
+            decimal? pressure = null;
 
-            decimal? ozone = forecastJson.current.ozone;
+            if(forecastJson.current.pressure != null)
+            {
+                pressure = forecastJson.current.pressure;
+            }
+
+            decimal? cloudCover = null;
+
+            if(forecastJson.current.clouds != null)
+            {
+                cloudCover = forecastJson.current.clouds;
+            }
+
+            decimal? uvIndex = null;
+
+            if(forecastJson.current.uvi != null)
+            {
+                uvIndex = forecastJson.current.uvi;
+            }
+
+            decimal? visibility = null;
+
+            if(forecastJson.current.visibility != null)
+            {
+                visibility = forecastJson.current.visibility;
+            }
+
+            decimal? ozone = null;
+
+            if(forecastJson.current.ozone != null)
+            {
+                ozone = forecastJson.current.ozone;
+            }
 
             SaveCurrentlyData(runID, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
         }        
