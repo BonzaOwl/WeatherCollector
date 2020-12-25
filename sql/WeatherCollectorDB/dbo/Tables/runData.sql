@@ -6,8 +6,8 @@
     [latitude]       FLOAT (53)       NULL,
     [timeZone]       NVARCHAR (200)   NULL,
     [timeZoneOffset] NVARCHAR (200)   NULL,
-    [invalid]        BIT              NULL,
-    [deleted]        BIT              NULL, 
+    [invalid]        BIT              NULL DEFAULT 0,
+    [deleted]        BIT              NULL DEFAULT 0, 
     CONSTRAINT [PK_runData_runID] PRIMARY KEY ([runID])
 );
 
