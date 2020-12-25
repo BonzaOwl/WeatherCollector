@@ -1,13 +1,13 @@
 ﻿
-CREATE   PROCEDURE [dbo].[getHistory]
+CREATE PROCEDURE [dbo].[getHistory]
 
 AS
 
-SELECT 
-
-    [runGuid]
-    ,[runTime]
-    ,[rawData]
+SELECT
+    runID
+    ,invalid
+    ,deleted
+    ,runTime
     ,[temperature]
     ,[apparentTemperature]
     ,[windSpeed]
