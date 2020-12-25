@@ -154,5 +154,18 @@ namespace WeatherCollectorDesktop
             MessageBox.Show("Updated Sucessfully");
 
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (CloseCancel.ConfirmCloseCancel() == true)
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
     }
 }

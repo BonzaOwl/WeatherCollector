@@ -68,6 +68,16 @@ namespace WeatherCollectorDesktop
             }
         }
 
+        private void btnRunNow_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer1.Start();
+            startTime = DateTime.Now;
+            WeatherRun();
+            runTimes += 1; //Increment the amount of times this has run by 1
+            lblRunTimes.Text = runTimes.ToString(); //Set the total number or run times to the label
+        }
+
         private void Timer1_Tick(object sender, EventArgs e)
         {
             int elapsedSeconds = (int)(DateTime.Now - startTime).TotalSeconds;
@@ -130,7 +140,7 @@ namespace WeatherCollectorDesktop
                     string error = ex.Message.ToString();
                     lblDatabaseExist.Visible = true;
                     lblDatabaseExist.Text = "Database connection failed";
-                    lblExecutions.Visible = false;
+                    lblTotalRunTimes.Visible = false;
                     lblRunTimes.Visible = false; 
                     btn_Start.Visible = false; //Can't collect data as we have nowhere to save it, hide the button
                     txtLogging.ForeColor = System.Drawing.Color.Red;
@@ -159,12 +169,9 @@ namespace WeatherCollectorDesktop
                 txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Fetching URL based on application settings" + Environment.NewLine);
                 string forecastUrl = ConstructRequestUrl.ForecastUrl(apiKey, cordsLat, cordsLong, units, language);
 
-                //Get the runID
-                int runID = Properties.Settings.Default.runID;
+                int runID = GetRunID.LatestRunID();
 
-                //Increment the runID and save it back to the config file
-                runID += 1;
-                Properties.Settings.Default.runID = runID;
+                txtRunIDCnt.Text = runID.ToString();
 
                 string content = GetWeatherData(runID, runGuid, forecastUrl);
 
@@ -223,7 +230,7 @@ namespace WeatherCollectorDesktop
                         SaveWeatherData(runID, runGuid, id, main, description, iconID);
 
                         txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Saving alert data to the database" + Environment.NewLine);
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -231,7 +238,7 @@ namespace WeatherCollectorDesktop
                         txtLogging.ForeColor = System.Drawing.Color.Red;
                     }
                 }
-            }            
+            }
 
             float? longitude = forecastJson.lon;
             float? latitude = forecastJson.lat;
@@ -239,7 +246,7 @@ namespace WeatherCollectorDesktop
             //Get the forecasted time from the JSON
             long time = forecastJson.current.dt;
             DateTime runTime = FromUnixTime.Convert(time);
-                        
+
             string timeZone = forecastJson.timezone;
             string timeZoneOffset = forecastJson.timezone_offset;
 
@@ -253,8 +260,13 @@ namespace WeatherCollectorDesktop
             long sunset = forecastJson.current.sunset;
             DateTime dtSunset = FromUnixTime.Convert(sunset);
 
-            decimal? rain = forecastJson["current"]["rain"]["1h"];
-            //decimal? rain = 1.5M;
+            //Rain might not always be populated, if it isn't we need to skip it
+            decimal? rain = null;
+
+            if (forecastJson["current"]["rain"] != null)
+            {
+                rain = forecastJson["rain"]["1h"];
+            }                   
 
             decimal? snow = forecastJson.current.snow;         
 
@@ -283,7 +295,7 @@ namespace WeatherCollectorDesktop
             decimal? ozone = forecastJson.current.ozone;
 
             SaveCurrentlyData(runID, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
-        }
+        }        
 
         private void SaveRunData(int runID, Guid runGuid, DateTime runTime, float? longitude, float? latitude, string timeZone, string timeZoneOffset, string units)
         {
@@ -440,21 +452,16 @@ namespace WeatherCollectorDesktop
 
                     SaveWeatherData.Parameters.Add("@runGuid", SqlDbType.UniqueIdentifier);
                     SaveWeatherData.Parameters["@runGuid"].Value = runGuid;
-                    
-                    SaveWeatherData.Parameters.Add("@rain", SqlDbType.Decimal);
-                    SaveWeatherData.Parameters["@rain"].Value = rain;
-                                       
 
-                    //if(snow != null)
-                    //{
-                    //    SaveWeatherData.Parameters.Add("@snow", SqlDbType.Decimal);
-                    //    SaveWeatherData.Parameters["@snow"].Value = snow;
-                    //}
-                    //else
-                    //{
-                    //    SaveWeatherData.Parameters.Add("@snow", SqlDbType.Decimal);
-                    //    SaveWeatherData.Parameters["@snow"].Value = DBNull.Value;
-                    //}                    
+                    SaveWeatherData.Parameters.Add("@rain", SqlDbType.Decimal);
+
+                    if (rain != null)
+                    {                      
+                        SaveWeatherData.Parameters["@rain"].Value = rain;
+                    } else
+                    {                        
+                        SaveWeatherData.Parameters["@rain"].Value = DBNull.Value;
+                    }                                                       
 
                     if (temperature != null)
                     {
@@ -547,8 +554,8 @@ namespace WeatherCollectorDesktop
                     SaveWeatherData.Parameters.Add("@cloudCover", SqlDbType.Decimal);
                     if (cloudCover != null)
                     {
-                        //SaveWeatherData.Parameters["@cloudCover"].Value = cloudCover + 'M';
-                        SaveWeatherData.Parameters["@cloudCover"].Value = DBNull.Value;
+                        SaveWeatherData.Parameters["@cloudCover"].Value = cloudCover + 'M';
+                        //SaveWeatherData.Parameters["@cloudCover"].Value = DBNull.Value;
                     }
                     else
                     {
@@ -567,8 +574,8 @@ namespace WeatherCollectorDesktop
                     SaveWeatherData.Parameters.Add("@visibility", SqlDbType.Decimal);
                     if (visibility != null)
                     {
-                        //SaveWeatherData.Parameters["@visibility"].Value = visibility;
-                        SaveWeatherData.Parameters["@visibility"].Value = DBNull.Value;
+                        SaveWeatherData.Parameters["@visibility"].Value = visibility;
+                        //SaveWeatherData.Parameters["@visibility"].Value = DBNull.Value;
                     } else
                     {
                         SaveWeatherData.Parameters["@visibility"].Value = DBNull.Value;
@@ -611,8 +618,32 @@ namespace WeatherCollectorDesktop
         private void BtnExportLogs_Click(object sender, EventArgs e)
         {
             string fileRoot = Properties.Settings.Default.LogPath;
+
+            if(fileRoot.Length == 0)
+            {
+                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " File Root Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
+                txtLogging.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
             string fileDir = Properties.Settings.Default.LogDirectory;
-            string fileName = Properties.Settings.Default.LogFile;
+
+            if (fileDir.Length == 0)
+            {
+                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Folder Name Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
+                txtLogging.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            string fileName = "weathercollector" + "-" + DateTime.Now.ToString("ddMMyyyyhhmmss") + ".log";
+
+            if (fileName.Length == 0)
+            {
+                txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Filename Isn't Set, this must be configured in the settings before exporting logs." + Environment.NewLine);
+                txtLogging.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
             string filePath = fileRoot + "\\" + fileDir + "\\" + fileName;
 
             try
@@ -621,12 +652,31 @@ namespace WeatherCollectorDesktop
                 {
                     File.WriteAllText(filePath, txtLogging.Text);
                     MessageBox.Show("Logs successfully exported", "Logs Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Logs successfully exported." + Environment.NewLine);
+                    txtLogging.ForeColor = System.Drawing.Color.Green;
                 }
                 else
                 {
-                    Directory.CreateDirectory(fileRoot + fileDir);
-                    File.WriteAllText(filePath, txtLogging.Text);
-                    MessageBox.Show("Logs successfully exported", "Logs Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        Directory.CreateDirectory(fileRoot + fileDir);
+
+                        txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Directory doesn't exist." + Environment.NewLine);
+                        txtLogging.ForeColor = System.Drawing.Color.Red;
+
+                        txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Directory sucesssfully created." + Environment.NewLine);
+                        txtLogging.ForeColor = System.Drawing.Color.Green;
+
+                        File.WriteAllText(filePath, txtLogging.Text);
+                        MessageBox.Show("Logs successfully exported", "Logs Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);                        
+
+                    }
+                    catch
+                    {
+                        txtLogging.AppendText(DateTime.Now.ToShortTimeString() + " Error exporting logs to file." + Environment.NewLine);
+                        txtLogging.ForeColor = System.Drawing.Color.Red;
+                    }
                 }
             }
             catch (Exception ex)
@@ -673,6 +723,17 @@ namespace WeatherCollectorDesktop
         private void WeatherCollector_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (CloseCancel.ConfirmCloseCancel() == true)
+            {
+                e.Cancel = false;
+            } else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

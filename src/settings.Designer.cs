@@ -56,8 +56,6 @@
             this.txtLong = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtLogFile = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtLogDirectory = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtLogRoot = new System.Windows.Forms.TextBox();
@@ -379,8 +377,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.txtLogFile);
-            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtLogDirectory);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtLogRoot);
@@ -391,23 +387,6 @@
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Log Location";
-            // 
-            // txtLogFile
-            // 
-            this.txtLogFile.Location = new System.Drawing.Point(17, 92);
-            this.txtLogFile.Name = "txtLogFile";
-            this.txtLogFile.Size = new System.Drawing.Size(249, 20);
-            this.txtLogFile.TabIndex = 5;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(19, 76);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 13);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "File Name";
             // 
             // txtLogDirectory
             // 
@@ -529,8 +508,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLogDirectory;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtLogFile;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtLogRoot;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;

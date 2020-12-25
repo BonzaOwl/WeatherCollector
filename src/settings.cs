@@ -26,8 +26,7 @@ namespace WeatherCollectorDesktop
             txtLong.Text = Properties.Settings.Default.weatherLong;
             txtDatabaseUsername.Text = Properties.Settings.Default.DatabaseUser;
             txtDatabasePassword.Text = Properties.Settings.Default.DatabasePassword;
-            txtLogDirectory.Text = Properties.Settings.Default.LogDirectory;
-            txtLogFile.Text = Properties.Settings.Default.LogFile;
+            txtLogDirectory.Text = Properties.Settings.Default.LogDirectory;            
             txtLogRoot.Text = Properties.Settings.Default.LogPath;
 
             GetSetLanguage();
@@ -81,8 +80,7 @@ namespace WeatherCollectorDesktop
             Properties.Settings.Default.weatherLong = txtLong.Text;
             Properties.Settings.Default.DatabaseUser = txtDatabaseUsername.Text;
             Properties.Settings.Default.DatabasePassword = txtDatabasePassword.Text;
-            Properties.Settings.Default.LogDirectory = txtLogDirectory.Text;
-            Properties.Settings.Default.LogFile = txtLogFile.Text;
+            Properties.Settings.Default.LogDirectory = txtLogDirectory.Text;            
             Properties.Settings.Default.LogPath = txtLogRoot.Text;
 
             //https://openweathermap.org/api/one-call-api#data
@@ -170,5 +168,18 @@ namespace WeatherCollectorDesktop
         {
 
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (CloseCancel.ConfirmCloseCancel() == true)
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
     }
 }

@@ -36,10 +36,10 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblRunTimes = new System.Windows.Forms.Label();
             this.lblCurTime = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTimeNextRun = new System.Windows.Forms.Label();
             this.txtLogging = new System.Windows.Forms.TextBox();
-            this.lblExecutions = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblTotalRunTimes = new System.Windows.Forms.Label();
+            this.lblCurrentState = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.btnExportLogs = new System.Windows.Forms.Button();
@@ -49,7 +49,11 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCurrentTime = new System.Windows.Forms.Label();
+            this.lblRunID = new System.Windows.Forms.Label();
+            this.txtRunIDCnt = new System.Windows.Forms.Label();
+            this.btnRunNow = new System.Windows.Forms.Button();
+            this.btnLatestJSON = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +95,7 @@
             // 
             this.lblRunTimes.AutoSize = true;
             this.lblRunTimes.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRunTimes.Location = new System.Drawing.Point(221, 109);
+            this.lblRunTimes.Location = new System.Drawing.Point(117, 113);
             this.lblRunTimes.Name = "lblRunTimes";
             this.lblRunTimes.Size = new System.Drawing.Size(29, 31);
             this.lblRunTimes.TabIndex = 4;
@@ -106,15 +110,15 @@
             this.lblCurTime.TabIndex = 5;
             this.lblCurTime.Text = "00:00";
             // 
-            // label1
+            // lblTimeNextRun
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(304, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Time Until Next Run:";
+            this.lblTimeNextRun.AutoSize = true;
+            this.lblTimeNextRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeNextRun.Location = new System.Drawing.Point(304, 38);
+            this.lblTimeNextRun.Name = "lblTimeNextRun";
+            this.lblTimeNextRun.Size = new System.Drawing.Size(125, 13);
+            this.lblTimeNextRun.TabIndex = 7;
+            this.lblTimeNextRun.Text = "Time Until Next Run:";
             // 
             // txtLogging
             // 
@@ -125,25 +129,25 @@
             this.txtLogging.Size = new System.Drawing.Size(445, 139);
             this.txtLogging.TabIndex = 8;
             // 
-            // lblExecutions
+            // lblTotalRunTimes
             // 
-            this.lblExecutions.AutoSize = true;
-            this.lblExecutions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExecutions.Location = new System.Drawing.Point(166, 79);
-            this.lblExecutions.Name = "lblExecutions";
-            this.lblExecutions.Size = new System.Drawing.Size(142, 20);
-            this.lblExecutions.TabIndex = 9;
-            this.lblExecutions.Text = "Total Executions";
+            this.lblTotalRunTimes.AutoSize = true;
+            this.lblTotalRunTimes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRunTimes.Location = new System.Drawing.Point(62, 83);
+            this.lblTotalRunTimes.Name = "lblTotalRunTimes";
+            this.lblTotalRunTimes.Size = new System.Drawing.Size(139, 20);
+            this.lblTotalRunTimes.TabIndex = 9;
+            this.lblTotalRunTimes.Text = "Total Run Times";
             // 
-            // label4
+            // lblCurrentState
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(158, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Current Status:";
+            this.lblCurrentState.AutoSize = true;
+            this.lblCurrentState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentState.Location = new System.Drawing.Point(158, 38);
+            this.lblCurrentState.Name = "lblCurrentState";
+            this.lblCurrentState.Size = new System.Drawing.Size(92, 13);
+            this.lblCurrentState.TabIndex = 10;
+            this.lblCurrentState.Text = "Current Status:";
             // 
             // lblStatus
             // 
@@ -222,35 +226,78 @@
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
-            // label2
+            // lblCurrentTime
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Current Time:";
+            this.lblCurrentTime.AutoSize = true;
+            this.lblCurrentTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentTime.Location = new System.Drawing.Point(17, 38);
+            this.lblCurrentTime.Name = "lblCurrentTime";
+            this.lblCurrentTime.Size = new System.Drawing.Size(83, 13);
+            this.lblCurrentTime.TabIndex = 6;
+            this.lblCurrentTime.Text = "Current Time:";
+            // 
+            // lblRunID
+            // 
+            this.lblRunID.AutoSize = true;
+            this.lblRunID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRunID.Location = new System.Drawing.Point(302, 83);
+            this.lblRunID.Name = "lblRunID";
+            this.lblRunID.Size = new System.Drawing.Size(66, 20);
+            this.lblRunID.TabIndex = 17;
+            this.lblRunID.Text = "Run ID";
+            // 
+            // txtRunIDCnt
+            // 
+            this.txtRunIDCnt.AutoSize = true;
+            this.txtRunIDCnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRunIDCnt.Location = new System.Drawing.Point(324, 113);
+            this.txtRunIDCnt.Name = "txtRunIDCnt";
+            this.txtRunIDCnt.Size = new System.Drawing.Size(29, 31);
+            this.txtRunIDCnt.TabIndex = 18;
+            this.txtRunIDCnt.Text = "0";
+            // 
+            // btnRunNow
+            // 
+            this.btnRunNow.Location = new System.Drawing.Point(116, 301);
+            this.btnRunNow.Name = "btnRunNow";
+            this.btnRunNow.Size = new System.Drawing.Size(92, 23);
+            this.btnRunNow.TabIndex = 19;
+            this.btnRunNow.Text = "Run Now";
+            this.btnRunNow.UseVisualStyleBackColor = true;
+            this.btnRunNow.Click += new System.EventHandler(this.btnRunNow_Click);
+            // 
+            // btnLatestJSON
+            // 
+            this.btnLatestJSON.Location = new System.Drawing.Point(301, 301);
+            this.btnLatestJSON.Name = "btnLatestJSON";
+            this.btnLatestJSON.Size = new System.Drawing.Size(75, 23);
+            this.btnLatestJSON.TabIndex = 20;
+            this.btnLatestJSON.Text = "Latest JSON";
+            this.btnLatestJSON.UseVisualStyleBackColor = true;
             // 
             // WeatherCollector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 337);
+            this.Controls.Add(this.btnLatestJSON);
+            this.Controls.Add(this.txtRunIDCnt);
+            this.Controls.Add(this.lblRunID);
             this.Controls.Add(this.lblDatabaseExist);
             this.Controls.Add(this.btnExportLogs);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.lblExecutions);
+            this.Controls.Add(this.lblCurrentState);
+            this.Controls.Add(this.lblTotalRunTimes);
             this.Controls.Add(this.txtLogging);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblTimeNextRun);
+            this.Controls.Add(this.lblCurrentTime);
             this.Controls.Add(this.lblCurTime);
             this.Controls.Add(this.lblRunTimes);
             this.Controls.Add(this.lblCountDown);
             this.Controls.Add(this.btn_Stop);
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.btnRunNow);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -272,10 +319,10 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblRunTimes;
         private System.Windows.Forms.Label lblCurTime;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTimeNextRun;
         private System.Windows.Forms.TextBox txtLogging;
-        private System.Windows.Forms.Label lblExecutions;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblTotalRunTimes;
+        private System.Windows.Forms.Label lblCurrentState;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button btnExportLogs;
@@ -284,8 +331,12 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCurrentTime;
         private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
+        private System.Windows.Forms.Label lblRunID;
+        private System.Windows.Forms.Label txtRunIDCnt;
+        private System.Windows.Forms.Button btnRunNow;
+        private System.Windows.Forms.Button btnLatestJSON;
     }
 }
 

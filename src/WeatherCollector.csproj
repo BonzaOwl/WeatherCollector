@@ -68,10 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="class\CloseCancel.cs" />
     <Compile Include="class\ConnectionStringBuilder.cs" />
     <Compile Include="class\ConstructRequestUrl.cs" />
     <Compile Include="class\FromUnixTime.cs" />
     <Compile Include="class\GetIconID.cs" />
+    <Compile Include="class\GetRunID.cs" />
     <Compile Include="class\RootObject.cs" />
     <Compile Include="class\Weather.cs" />
     <Compile Include="history.cs">
