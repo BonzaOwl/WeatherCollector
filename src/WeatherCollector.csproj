@@ -76,6 +76,12 @@
     <Compile Include="class\GetRunID.cs" />
     <Compile Include="class\RootObject.cs" />
     <Compile Include="class\Weather.cs" />
+    <Compile Include="currentdata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="currentdata.Designer.cs">
+      <DependentUpon>currentdata.cs</DependentUpon>
+    </Compile>
     <Compile Include="history.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <Compile Include="settings.Designer.cs">
       <DependentUpon>settings.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="currentdata.resx">
+      <DependentUpon>currentdata.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="history.resx">
       <DependentUpon>history.cs</DependentUpon>
     </EmbeddedResource>

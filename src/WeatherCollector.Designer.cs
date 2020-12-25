@@ -274,6 +274,7 @@
             this.btnLatestJSON.TabIndex = 20;
             this.btnLatestJSON.Text = "Latest JSON";
             this.btnLatestJSON.UseVisualStyleBackColor = true;
+            this.btnLatestJSON.Click += new System.EventHandler(this.btnLatestJSON_Click);
             // 
             // WeatherCollector
             // 

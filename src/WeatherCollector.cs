@@ -735,5 +735,11 @@ namespace WeatherCollectorDesktop
                 e.Cancel = true;
             }
         }
+
+        private void btnLatestJSON_Click(object sender, EventArgs e)
+        {
+            new CurrentData().Show();
+            Hide();
+        }
     }
 }
