@@ -14,7 +14,7 @@ CREATE PROC [dbo].[SaveWeatherData]
 @pressure DECIMAL(6,2),
 @cloudCover DECIMAL(4,2),
 @uvIndex DECIMAL(4,2),
-@visibility DECIMAL(4,2),
+@visibility DECIMAL(7,2),
 @ozone DECIMAL(5,2)
 
 AS
