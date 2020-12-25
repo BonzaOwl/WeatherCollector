@@ -5,7 +5,9 @@ CREATE   VIEW [dbo].[allWeatherData]
 AS
 
 SELECT  
-    rd.runGuid,
+    rd.runID,
+    rd.invalid,
+    rd.deleted,
     rd.runTime,
     rwd.rawData,
     wd.rain,
@@ -22,10 +24,11 @@ SELECT
     wd.visibility, 
     wd.ozone
 FROM 
-    Weather.dbo.runData rd
+    dbo.runData rd
 
     INNER JOIN dbo.WeatherData wd ON
         wd.runGuid = rd.runGuid
 
     INNER JOIN [dbo].[rawWeatherData] rwd ON
         rwd.runGuid = rd.runGuid
+GO
