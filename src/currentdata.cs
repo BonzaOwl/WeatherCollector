@@ -59,12 +59,42 @@ namespace WeatherCollectorDesktop
         {
             
             new WeatherCollector().Show();
-            Hide();
+            this.Hide();
         }
 
         private void BtnCopy_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(txtCurrentData.Text);
+        }
+
+        private void HomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new WeatherCollector().Show();
+            this.Hide();
+        }
+
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new settings().Show();
+            this.Hide();
+        }
+
+        private void HistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new History().Show();
+            this.Hide();
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string docs = Properties.Settings.Default.DocLink.ToString();
+            _ = System.Diagnostics.Process.Start(docs);
+        }
+
+        private void AboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new about().Show();
+            this.Hide();
         }
     }
 }

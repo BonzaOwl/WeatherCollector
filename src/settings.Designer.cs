@@ -42,7 +42,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSaveSettings = new System.Windows.Forms.Button();
-            this.BtnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LblLanguageHead = new System.Windows.Forms.Label();
             this.LblUnitsHead = new System.Windows.Forms.Label();
@@ -65,11 +64,18 @@
             this.lblRefreshInfo = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnClearDatabase = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtServerName
@@ -176,23 +182,13 @@
             // 
             // btnSaveSettings
             // 
-            this.btnSaveSettings.Location = new System.Drawing.Point(509, 475);
+            this.btnSaveSettings.Location = new System.Drawing.Point(594, 497);
             this.btnSaveSettings.Name = "btnSaveSettings";
-            this.btnSaveSettings.Size = new System.Drawing.Size(94, 23);
+            this.btnSaveSettings.Size = new System.Drawing.Size(95, 23);
             this.btnSaveSettings.TabIndex = 12;
             this.btnSaveSettings.Text = "Save Settings";
             this.btnSaveSettings.UseVisualStyleBackColor = true;
             this.btnSaveSettings.Click += new System.EventHandler(this.BtnSaveSettings_Click);
-            // 
-            // BtnClose
-            // 
-            this.BtnClose.Location = new System.Drawing.Point(609, 475);
-            this.BtnClose.Name = "BtnClose";
-            this.BtnClose.Size = new System.Drawing.Size(75, 23);
-            this.BtnClose.TabIndex = 13;
-            this.BtnClose.Text = "Close";
-            this.BtnClose.UseVisualStyleBackColor = true;
-            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // groupBox1
             // 
@@ -208,7 +204,7 @@
             this.groupBox1.Controls.Add(this.txtLong);
             this.groupBox1.Controls.Add(this.txtWeatherAPI);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(14, 170);
+            this.groupBox1.Location = new System.Drawing.Point(14, 194);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(344, 308);
             this.groupBox1.TabIndex = 14;
@@ -371,7 +367,7 @@
             this.groupBox2.Controls.Add(this.txtDatabasePassword);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txtDatabaseUsername);
-            this.groupBox2.Location = new System.Drawing.Point(16, 27);
+            this.groupBox2.Location = new System.Drawing.Point(16, 51);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(342, 137);
             this.groupBox2.TabIndex = 15;
@@ -384,7 +380,7 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtLogRoot);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(374, 170);
+            this.groupBox3.Location = new System.Drawing.Point(374, 194);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(310, 137);
             this.groupBox3.TabIndex = 16;
@@ -428,7 +424,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 485);
+            this.label12.Location = new System.Drawing.Point(25, 509);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(325, 13);
             this.label12.TabIndex = 17;
@@ -439,7 +435,7 @@
             this.groupBox4.Controls.Add(this.lblRefreshInfo);
             this.groupBox4.Controls.Add(this.txtRefresh);
             this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Location = new System.Drawing.Point(374, 322);
+            this.groupBox4.Location = new System.Drawing.Point(374, 346);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(310, 99);
             this.groupBox4.TabIndex = 18;
@@ -458,7 +454,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnClearDatabase);
-            this.groupBox5.Location = new System.Drawing.Point(374, 27);
+            this.groupBox5.Location = new System.Drawing.Point(374, 51);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(310, 137);
             this.groupBox5.TabIndex = 19;
@@ -476,20 +472,69 @@
             this.btnClearDatabase.TabIndex = 0;
             this.btnClearDatabase.Text = "Clear Down Database";
             this.btnClearDatabase.UseVisualStyleBackColor = false;
-            this.btnClearDatabase.Click += new System.EventHandler(this.btnClearDatabase_Click);
+            this.btnClearDatabase.Click += new System.EventHandler(this.BtnClearDatabase_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.homeToolStripMenuItem,
+            this.historyToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(701, 27);
+            this.menuStrip1.TabIndex = 26;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // homeToolStripMenuItem
+            // 
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(58, 23);
+            this.homeToolStripMenuItem.Text = "Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.HomeToolStripMenuItem_Click);
+            // 
+            // historyToolStripMenuItem
+            // 
+            this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(65, 23);
+            this.historyToolStripMenuItem.Text = "History";
+            this.historyToolStripMenuItem.Click += new System.EventHandler(this.HistoryToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.aboutToolStripMenuItem1});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(49, 23);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.aboutToolStripMenuItem.Text = "Documentation";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1_Click);
             // 
             // settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 506);
+            this.ClientSize = new System.Drawing.Size(701, 532);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.btnSaveSettings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "settings";
@@ -504,6 +549,8 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -524,7 +571,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSaveSettings;
-        private System.Windows.Forms.Button BtnClose;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtLat;
@@ -547,5 +593,11 @@
         private System.Windows.Forms.Label LblUnitsHead;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnClearDatabase;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
     }
 }

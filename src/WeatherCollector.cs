@@ -21,13 +21,23 @@ namespace WeatherCollectorDesktop
         public WeatherCollector()
         {
             InitializeComponent();
+
+            
         }
 
         protected override async void OnLoad(EventArgs e)
         {
             await DatabaseCheck();            
             lblCurTime.Text = DateTime.Now.ToShortTimeString(); //Set the current time label to the initial value 
-            lblCountDown.Text = secondsToWait.ToString(); //Set the count down label to the initial value 
+
+            if (appRunning == 0)
+            {
+                lblCountDown.Text = string.Empty;
+            } else
+            {
+                lblCountDown.Text = secondsToWait.ToString(); //Set the count down label to the initial value 
+            }
+
             lblRunTimes.Text = runTimes.ToString(); //Set the status label to the initial value 
             lblStatus.Text = "Stopped"; //Set the status label to the initial value 
             timer2.Start(); //Start the timer2
@@ -165,7 +175,7 @@ namespace WeatherCollectorDesktop
 
             if(cordsLong == null)
             {
-                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Either the logitude or latitude has not been defined. No Location Defined " + Environment.NewLine);                
+                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " The logitude has not been defined. No Location Defined " + Environment.NewLine);                
                 return;
             }
 
@@ -173,7 +183,7 @@ namespace WeatherCollectorDesktop
 
             if(cordsLat == null)
             {
-                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " Either the logitude or latitude has not been defined. No Location Defined " + Environment.NewLine);                
+                txtLogging.AppendText(DateTime.Now.ToLongTimeString() + " The latitude has not been defined. No Location Defined " + Environment.NewLine);                
                 return;
             }
 
@@ -704,6 +714,8 @@ namespace WeatherCollectorDesktop
 
             appRunning = 0;
 
+            lblCountDown.Text = string.Empty;
+
             btn_Start.Visible = true;
             btn_Stop.Visible = false;
         }
@@ -809,18 +821,13 @@ namespace WeatherCollectorDesktop
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new settings().Show();
-            Hide();
+            this.Hide();
         }
 
         private void HistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new History().Show();
-            Hide();
-        }
-
-        private void HelpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _ = System.Diagnostics.Process.Start("https://github.com/BonzaOwl/WeatherCollector");
+            this.Hide();
         }
 
         private void WeatherCollector_Load(object sender, EventArgs e)
@@ -842,7 +849,19 @@ namespace WeatherCollectorDesktop
         private void BtnLatestJSON_Click(object sender, EventArgs e)
         {
             new CurrentData().Show();
-            Hide();
+            this.Hide();
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string docs = Properties.Settings.Default.DocLink.ToString();
+            _ = System.Diagnostics.Process.Start(docs);
+        }
+
+        private void AboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new about().Show();
+            this.Hide();
         }
     }
 }

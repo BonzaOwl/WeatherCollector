@@ -12,7 +12,10 @@ namespace WeatherCollectorDesktop
         public History()
         {
             InitializeComponent();
-            
+
+            //Hide the close buttons
+            this.ControlBox = false;
+
         }
 
         protected override void OnLoad(EventArgs e)
@@ -99,7 +102,7 @@ namespace WeatherCollectorDesktop
         private void BtnClose_Click(object sender, EventArgs e)
         {
             WeatherCollector wc = new WeatherCollector();
-            Hide();
+            this.Hide();
             wc.Show();
         }
 
@@ -166,5 +169,28 @@ namespace WeatherCollectorDesktop
             }
         }
 
+        private void HomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new WeatherCollector().Show();
+            this.Hide();
+        }
+
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new settings().Show();
+            this.Hide();
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string docs = Properties.Settings.Default.DocLink.ToString();
+            _ = System.Diagnostics.Process.Start(docs);
+        }
+
+        private void AboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new about().Show();
+            this.Hide();
+        }
     }
 }

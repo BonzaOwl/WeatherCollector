@@ -183,7 +183,7 @@ namespace WeatherCollectorDesktop
             }
         }
 
-        private void btnClearDatabase_Click(object sender, EventArgs e)
+        private void BtnClearDatabase_Click(object sender, EventArgs e)
         {
             if(ConfirmDatabaseClear() == true)
             {
@@ -228,6 +228,30 @@ namespace WeatherCollectorDesktop
                 {
                     _ = ex.Message.ToString();
                 }            
+        }
+
+        private void HomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new WeatherCollector().Show();
+            this.Hide();
+        }
+
+        private void HistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new History().Show();
+            this.Hide();
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string docs = Properties.Settings.Default.DocLink.ToString();
+            _ = System.Diagnostics.Process.Start(docs);
+        }
+
+        private void AboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new about().Show();
+            this.Hide();
         }
     }    
 }

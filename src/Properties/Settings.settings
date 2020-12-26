@@ -53,5 +53,8 @@
     <Setting Name="weatherLanguage" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DocLink" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://github.com/BonzaOwl/WeatherCollector</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
