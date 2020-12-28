@@ -15,14 +15,13 @@ namespace WeatherCollectorDesktop
         private readonly int secondsToWait = Properties.Settings.Default.RefreshInterval;
         private DateTime startTime;
         private int runTimes;
+        private bool databaseExists = false;
 
         private int appRunning;
 
         public WeatherCollector()
         {
-            InitializeComponent();
-
-            
+            InitializeComponent();            
         }
 
         protected override async void OnLoad(EventArgs e)
@@ -38,9 +37,18 @@ namespace WeatherCollectorDesktop
                 lblCountDown.Text = secondsToWait.ToString(); //Set the count down label to the initial value 
             }
 
-            lblRunTimes.Text = runTimes.ToString(); //Set the status label to the initial value 
-            lblStatus.Text = "Stopped"; //Set the status label to the initial value 
+            lblRunTimes.Text = runTimes.ToString(); //Set the status label to the initial value             
             timer2.Start(); //Start the timer2
+
+            if (databaseExists == true)
+            {
+                lblDatabaseExist.Visible = false;
+                lblStatus.Text = "Stopped"; //Set the status label to the initial value 
+            }
+
+            lblTotalRunTimes.Visible = true;
+            lblRunTimes.Visible = true;
+            
 
             if (appRunning == 0)
             {
@@ -142,7 +150,9 @@ namespace WeatherCollectorDesktop
                     if(retunvalue == 0)                    
                     {
                         lblDatabaseExist.Visible = true;
-                    }                    
+                    }
+
+                    databaseExists = true;
                 }
 
                 catch (Exception ex)
@@ -151,9 +161,11 @@ namespace WeatherCollectorDesktop
                     lblDatabaseExist.Visible = true;
                     lblDatabaseExist.Text = "Database connection failed";
                     lblTotalRunTimes.Visible = false;
-                    lblRunTimes.Visible = false; 
-                    btn_Start.Visible = false; //Can't collect data as we have nowhere to save it, hide the button
+                    lblRunTimes.Visible = false;                     
                     txtLogging.ForeColor = System.Drawing.Color.Red;
+                    btn_Start.Visible = false;
+                    btnRunNow.Visible = false;
+                    lblStatus.Text = "Cnfg Err";
                 }
         }
 
@@ -840,6 +852,12 @@ namespace WeatherCollectorDesktop
             if (CloseCancel.ConfirmCloseCancel() == true)
             {
                 e.Cancel = false;
+                
+                //Remove the tray icon from view and dispose of it 
+                trayIcon.Icon.Dispose();
+                //Dispose of the tray icon object 
+                trayIcon.Dispose();
+
             } else
             {
                 e.Cancel = true;

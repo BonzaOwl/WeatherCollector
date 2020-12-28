@@ -49,6 +49,8 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblCurrentTime = new System.Windows.Forms.Label();
             this.lblRunID = new System.Windows.Forms.Label();
             this.txtRunIDCnt = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,7 @@
             this.btn_Start.Text = "Start Collecting";
             this.btn_Start.UseVisualStyleBackColor = true;
             this.btn_Start.Click += new System.EventHandler(this.Btn_Start_Click);
+            this.btn_Start.Visible = true;
             // 
             // btn_Stop
             // 
@@ -235,6 +236,20 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(49, 23);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.aboutToolStripMenuItem.Text = "Documentation";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(173, 24);
+            this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1_Click);
+            // 
             // lblCurrentTime
             // 
             this.lblCurrentTime.AutoSize = true;
@@ -321,25 +336,13 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(150, 24);
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.aboutToolStripMenuItem.Text = "Documentation";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem1
-            // 
-            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
-            this.aboutToolStripMenuItem1.Text = "About";
-            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1_Click);
-            // 
             // WeatherCollector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 332);
+            this.Controls.Add(this.lblRunTimes);
+            this.Controls.Add(this.lblTotalRunTimes);
             this.Controls.Add(this.btnLatestJSON);
             this.Controls.Add(this.txtRunIDCnt);
             this.Controls.Add(this.lblRunID);
@@ -347,12 +350,10 @@
             this.Controls.Add(this.btnExportLogs);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblCurrentState);
-            this.Controls.Add(this.lblTotalRunTimes);
             this.Controls.Add(this.txtLogging);
             this.Controls.Add(this.lblTimeNextRun);
             this.Controls.Add(this.lblCurrentTime);
             this.Controls.Add(this.lblCurTime);
-            this.Controls.Add(this.lblRunTimes);
             this.Controls.Add(this.lblCountDown);
             this.Controls.Add(this.btn_Stop);
             this.Controls.Add(this.btn_Start);
