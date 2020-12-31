@@ -409,7 +409,7 @@ namespace WeatherCollectorDesktop
                 ozone = forecastJson.current.ozone;
             }
 
-            SaveCurrentlyData(runID, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
+            SaveCurrentlyData(runID, dtSunrise, dtSunset, runGuid, snow ,rain, temperature, apparentTemperature, windSpeed, windGust, windBearing, dewPoint, humidity, pressure, cloudCover, uvIndex, visibility, ozone);
         }        
 
         private void SaveRunData(int runID, Guid runGuid, DateTime runTime, float? longitude, float? latitude, string timeZone, string timeZoneOffset, string units)
@@ -549,7 +549,7 @@ namespace WeatherCollectorDesktop
                 }
         }        
 
-        private void SaveCurrentlyData(int runID, Guid runGuid, Decimal? snow, Decimal? rain, Decimal? temperature, Decimal? apparentTemperature, Decimal? windSpeed, Decimal? windGust, Decimal? windBearing, Decimal? dewPoint, Decimal? humidity, Decimal? pressure, Decimal? cloudCover, Decimal? uvIndex, Decimal? visibility, Decimal? ozone)
+        private void SaveCurrentlyData(int runID, DateTime sunrise, DateTime sunset, Guid runGuid, Decimal? snow, Decimal? rain, Decimal? temperature, Decimal? apparentTemperature, Decimal? windSpeed, Decimal? windGust, Decimal? windBearing, Decimal? dewPoint, Decimal? humidity, Decimal? pressure, Decimal? cloudCover, Decimal? uvIndex, Decimal? visibility, Decimal? ozone)
         {
             var sqldb_connection = ConnectionStringBuilder.ConnectionString();
             using (SqlConnection con = new SqlConnection(sqldb_connection))
@@ -567,6 +567,28 @@ namespace WeatherCollectorDesktop
 
                     SaveWeatherData.Parameters.Add("@runGuid", SqlDbType.UniqueIdentifier);
                     SaveWeatherData.Parameters["@runGuid"].Value = runGuid;
+
+                    SaveWeatherData.Parameters.Add("@sunrise", SqlDbType.DateTime);
+
+                    if (sunrise != null)
+                    {
+                        SaveWeatherData.Parameters["@sunrise"].Value = sunrise;
+                    }
+                    else
+                    {
+                        SaveWeatherData.Parameters["@sunrise"].Value = DBNull.Value;
+                    }
+
+                    SaveWeatherData.Parameters.Add("@sunset", SqlDbType.DateTime);
+
+                    if (sunset != null)
+                    {
+                        SaveWeatherData.Parameters["@sunset"].Value = sunset;
+                    }
+                    else
+                    {
+                        SaveWeatherData.Parameters["@sunset"].Value = DBNull.Value;
+                    }
 
                     SaveWeatherData.Parameters.Add("@rain", SqlDbType.Decimal);
 

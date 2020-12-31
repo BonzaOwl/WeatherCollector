@@ -3,6 +3,8 @@ CREATE PROC [dbo].[SaveWeatherData]
 
 @runID INT,
 @runGuid UNIQUEIDENTIFIER,
+@sunset DATETIME,
+@sunrise DATETIME,
 @rain DECIMAL(4,2),
 @temperature DECIMAL(4,2),
 @apparentTemperature DECIMAL(4,2),
@@ -25,6 +27,8 @@ INSERT INTO WeatherData
 (
     runID,
 	runGuid,
+	sunrise,
+    sunset,
     rain,
 	temperature,
 	apparentTemperature,
@@ -43,6 +47,8 @@ VALUES
 (
     @runID,
 	@runGuid,
+	@sunrise,
+    @sunset,
     @rain,
 	@temperature,
 	@apparentTemperature,

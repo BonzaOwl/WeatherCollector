@@ -1,6 +1,8 @@
 ﻿CREATE TABLE [dbo].[WeatherData] (
     [runID]               INT              NOT NULL,
     [runGuid]             UNIQUEIDENTIFIER NULL,
+    [sunrise]             DATETIME NULL,
+    [sunset]              DATETIME NULL,
     [rain]                DECIMAL (4, 2)   NULL,
     [precipProbability]   DECIMAL (4, 2)   NULL,
     [temperature]         DECIMAL (4, 2)   NULL,
