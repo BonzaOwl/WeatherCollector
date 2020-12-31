@@ -50,7 +50,7 @@ Weather Collector is a Windows Forms application written in C# that makes use of
 
 - **API Key** - Obtain an API key from [here](https://home.openweathermap.org/users/sign_up) once you have it enter it in this box.
 - **Logitude** - This can be obtained from [here](https://www.latlong.net/)
-- **Latitude** - As above this can be obtained from [her](https://www.latlong.net/)
+- **Latitude** - As above this can be obtained from [here](https://www.latlong.net/)
 - **Units** - Which unit would you like the data to be returned in metric or imperial, if neither are selected the default will be used. 
 
 ### Application Settings 
